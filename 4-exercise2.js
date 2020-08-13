@@ -22,6 +22,8 @@ const deepEqual = (item1, item2) => {
 
 
 console.log(deepEqual({a: 10, b: 123}, {a: 10, b: 123}) === true);
+console.log(deepEqual({a: 10, b: 123}, null) === false);
+console.log(deepEqual({a: 10, b: 123}, {a: 10, b: 12345}) === false);
 console.log(deepEqual([10, 123], [10, 1232]) == false);
 console.log(deepEqual("a: 10, b: 123", "a: 10, b: 123") === true);
 console.log(deepEqual("a: 10, b: 123", "a: 10, b: 123X") === false);

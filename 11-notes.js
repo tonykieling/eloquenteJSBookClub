@@ -1,5 +1,6 @@
-/*
+
 // CALLBACK
+/*
 const f = () => setTimeout(() => {
   console.log("this is first's output");
 }, 2000);
@@ -10,11 +11,10 @@ const t = input => setTimeout(() =>
   console.log(input)
 , 1000);
 
-const m = async (a, b, c) => {
-  //*** async/await does NOT work with callbacks, due to that not be asynchronous
+const m = (a, b, c) => {
+  //*** async/await does NOT work with callbacks, due to that not be async
   console.log("### this is main function");
   console.log("1 - first function output:");
-  await a();
   console.log("2 - second function output:", b());
   console.log("3 - third function output:");
   c("random text");
@@ -25,45 +25,47 @@ m(f, s, t);
 
 
 // PROMISE
-/*
+/* 11111
 let fifteen = Promise.resolve(15);
 fifteen.then(value => console.log(`Got ${value}`)); // → Got 15
 */
 
-/*
+/* 22222
 const myPromise = param => new Promise((resolve, reject) => {
   console.log("inside myPromise");
   console.time("1");
   if (param) {
-    const to = 2000;
+    const to = 1000;
     setTimeout(() => {
       console.timeEnd("1");
       resolve(`Okay after ${to/1000} seconds:)`);
     }, to);
   } else
-    reject(new Error("OOOps :("))
+    reject(new Error("OOOps 💩"))
 });
 
-const mp = () => {
+const mp = error => {
   console.log("printing mp");
   console.time("2");
   console.timeEnd("2");
-  return Promise.resolve("promise resolved!!");
-  // return Promise.reject(":/")
+  if (!error)
+    return Promise.resolve("promise resolved!!");
+  return Promise.reject(":/")
 }
 
 const anotherOne = () => new Promise((resolve, reject) => {
   console.log("*** 1 after promise");
   console.time("3");
+  const to = 1000;
   setTimeout(() => {
     // return ("*** it was the first one after promise");
     // return Promise.resolve("******");
     console.timeEnd("3");
     resolve("*******");
-  }, 2000);
+  }, to);
 });
 
-// a Promise.resolve only does not work within a setTimeout
+// a Promise.resolve does not work within a setTimeout
 // it has to be a new Promise as anotherOne function (above)
 const fourth = () => {
   console.log("444 FOURTH");
@@ -76,18 +78,28 @@ const fourth = () => {
 
 
 function main(){
-  myPromise(1)
-    .then(r => console.log(r))
-    .then(_ => fourth()
-      .then(m => console.log(m)))
+  myPromise(10)
+    .then(r => console.log(r)
+      // .then(_ => fourth()
+      //   .then(m => console.log(m)))
+    )
+    
     .then(_ => anotherOne()
       .then(m => console.log(m)))
-    .then(_ => mp()
-      .then(m => console.log("message received from 2nd promise is: ", m))
-      .catch(er => console.log("error from 2nd promise is:", er.message || er))
-    )
-    .catch(e => console.log("ERROR:", e.message || e));
 
+    .then(() => mp(1)
+      // in case a .then handle error, it should receive it as the second parameter like below
+      .then(
+        //first parameter
+        (m => console.log("message received from 2nd promise is:", m)),
+        //second parameter
+        (e => {
+          console.log("got an errorrrrrrrr 💩");
+          throw new Error(e);
+        })
+    ))
+
+    .catch(e => console.log("ERROR:", e.message || e));
 };
 
 main();
@@ -96,7 +108,7 @@ main();
 */
 
 
-/*
+/* 33333
 new Promise((r, reject) => {
   console.log("r:", r);
   console.log("reject:", reject);
@@ -112,3 +124,47 @@ new Promise((r, reject) => {
 // → Handler 2 nothing
 */
 
+
+// ASYNC/AWAIT
+async function test1(receivedTime){
+  const to = Number(receivedTime) || 1000;
+  console.log("within test1");
+  console.time(to);
+  const result = await new Promise((res, rej) => setTimeout(() => {
+    console.log(`\ttest after ${to / 1000} seconds`)
+    console.timeEnd(to);
+    res(`test's okay - to = ${to}`);
+  }, to));
+  console.log("\tresult before returning from test1 is:", result)
+  return(result);
+}
+
+// const test1 = async(param) => {
+//   console.log("within test1");
+//   // return("test's okay!!");
+//   if (param)
+//     return Promise.reject("ohoh");
+
+//   return Promise.resolve("test's okay!!");
+// }
+
+// function test1(receivedTime){
+//   console.log("111- within test1")
+//   return new Promise((resolve, reject) => {
+//     const to = receivedTime || 1000;
+//     setTimeout(() => {
+//       console.log(`test after ${to / 1000} seconds`);
+//       resolve("test's okay");
+//     } , to);
+//   }
+// )}
+
+// console.log(test1.toString());
+
+test1("error")
+  .then(m => console.log("message from test1 IS:::", m))
+  .then(_ => console.log("anything"))
+  .catch(e => console.log("error:::", e.message || e || "💩"))
+  .finally(_ => console.log("finally"));
+
+// (async() => await test1())();

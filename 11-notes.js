@@ -126,6 +126,7 @@ new Promise((r, reject) => {
 
 
 // ASYNC/AWAIT
+/*
 async function test1(receivedTime){
   const to = Number(receivedTime) || 1000;
   console.log("within test1");
@@ -168,3 +169,40 @@ test1("error")
   .finally(_ => console.log("finally"));
 
 // (async() => await test1())();
+*/
+
+const x = (i, v) => new Promise((res, rej) => {
+  // console.log("\n");
+  console.time(i);
+  return (setTimeout(() => {
+    console.timeEnd(i);
+    // res(`\n${i}- SOLVED @ ${v}`);
+    res(i * 100);
+  }, v));
+  // if (v)
+  //   res("SOLVED");
+  // else
+  //   rej("REJECTED");
+});
+
+// (async() => {
+//   console.log("111111111");
+//   const x1 = await x(1, 500);
+//   const x2 = await x(2, 600);
+//   const x3 = await x(3, 700);
+//   const x4 = await x(4, 800);
+//   const x5 = await x(5, 900);
+//   const result = await Promise.all([x1, x2, x3, x4, x5]);
+//   console.log("result===" + result);
+// })();
+
+x(1, 500)
+  // .then(m => console.log(m))
+  .then(y => x(2, y)
+    .then(m => console.log(m))
+  )
+  // .then(console.log("m"))
+  // .then(process.stdout.write("asd"))
+  .catch(console.log)
+
+// process.stdout.write("asd")

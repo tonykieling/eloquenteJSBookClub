@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document 14</title>
+</head>
+<body>
+  <button onclick=printDoc()>printDoc</button>
+  <!-- <button onclick=myF(document)>nodeType</button> -->
+  <br><br><br>
+  <p>One</p>
+  <p>Two</p>
+  <p>Three</p>
+  <button id="tf" onclick="threeFirst()">Three first</button>
+  <button onclick="create1Node()">Create Node</button>
+</body>
+
+<script>
+  console.log("14");
+  
+  create1Node = () => {
+    // const firstButton = document.getElementsByTagName("button")[1];
+    const firstButton = document.getElementById("tf");
+    console.log("firstButton", firstButton);
+
+    const newP = document.createElement("p");
+    const textBeforeButton = document.createTextNode("text before button");
+    newP.appendChild(textBeforeButton);
+    document.body.insertBefore(newP, firstButton);
+
+    const textEnd = document.createTextNode("text at the document's end");
+    document.body.appendChild(textEnd);
+  }
+
+  threeFirst = () => {
+    const ps = document.getElementsByTagName("p");
+    console.log("ps = " + JSON.stringify(ps));
+    document.body.insertBefore(ps[2], ps[0]);
+  }
+
+  printDoc = () => {
+    // console.log(typeof document);
+    const e = document;
+    console.log(e);
+    myF(e);
+  }
+
+  myF = e => {
+    // console.log("node type " + e.nodeType);
+    // console.log("child " + e.childNodes.length);
+    console.log("child " + e.childNodes.toString());
+    console.log("child " + JSON.stringify(e.childNodes));
+    // console.log(Node.TEXT_NODE);
+  }
+
+</script>
+</html>

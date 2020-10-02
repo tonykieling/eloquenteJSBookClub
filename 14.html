@@ -18,24 +18,47 @@
 
 <script>
   console.log("14");
+  console.log(document)
+  console.log(document.childNodes)
+  console.log(document.getElementById("tf").parentNode)
+  console.log(typeof document.documentElement)
   
   create1Node = () => {
     // const firstButton = document.getElementsByTagName("button")[1];
     const firstButton = document.getElementById("tf");
-    console.log("firstButton", firstButton);
+    console.log("firstButton", firstButton.nodeName);
 
     const newP = document.createElement("p");
     const textBeforeButton = document.createTextNode("text before button");
     newP.appendChild(textBeforeButton);
     document.body.insertBefore(newP, firstButton);
 
+    // it creates a new line and appends it to the end of the document
+    // const nl = document.createElement("br");
+    // it is huts a way to do it, maybe would be better to insert the text below within this p element
+    const nl = document.createElement("p");
+    nl.setAttribute("myAttr", "testAttr");
+    console.log(nl.getAttribute("myAttr"));
+    console.log(nl.attributes);
+    document.body.appendChild(nl);
+
+    //this line adds a new text element and append it to the end of the document
     const textEnd = document.createTextNode("text at the document's end");
-    document.body.appendChild(textEnd);
+    console.log(textEnd);
+    // document.body.appendChild(textEnd);
+    const temp = document.createElement("div");
+    temp.appendChild(textEnd);
+    document.body.appendChild(temp);
   }
 
   threeFirst = () => {
-    const ps = document.getElementsByTagName("p");
-    console.log("ps = " + JSON.stringify(ps));
+    // const ps = document.getElementsByTagName("p");
+    const ps = Array.from(document.getElementsByTagName("p"));
+    // console.log("ps = " + JSON.stringify(ps));
+    // console.log("ps = " + ps.toString());
+    console.log(ps);
+    // ps.forEach(console.log);
+    // ps.forEach(e => console.log(e));
     document.body.insertBefore(ps[2], ps[0]);
   }
 

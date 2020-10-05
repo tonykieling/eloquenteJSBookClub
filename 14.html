@@ -4,16 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document 14</title>
+  <style>
+    p {
+      color: blueviolet;
+    }
+  </style>
 </head>
 <body>
   <button onclick=printDoc()>printDoc</button>
   <!-- <button onclick=myF(document)>nodeType</button> -->
   <br><br><br>
-  <p>One</p>
+  <p style="color: cyan;">One</p>
   <p>Two</p>
   <p>Three</p>
-  <button id="tf" onclick="threeFirst()">Three First</button>
+  <button id="tf" onclick="threeFirst()" style="display: block">Three First</button>
   <button onclick="create1Node()">Create Node</button>
+  <button data-x="x" onclick=removeButton(this)>Remove 'CreateNode' Button</button>
 
   <div style="height: 500px;">
     <h1>any content here</h1>
@@ -22,12 +28,12 @@
 
 <script>
   //one way to add an event listener to window element is by
-  window.addEventListener("scroll", () => alert("scrolling page"));
+  // window.addEventListener("scroll", () => alert("scrolling page"));
 
   //event listener to get a click in any part of the page
-  window.onclick = () => {
-    alert("clicked\n window.pageYOffset: " + window.pageYOffset);
-  }
+  // window.onclick = () => {
+  //   alert("clicked\n window.pageYOffset: " + window.pageYOffset);
+  // }
 
   //window event listener to check hwne the user scrolls the page's bottom
   window.onscroll = function() {
@@ -48,6 +54,18 @@
   // console.log(document)
   // console.log(document.childNodes)
   // console.log(typeof document.documentElement)
+
+  // 3 ways to remove an html - 2 remove the element and 1 is not show it (actually, it doesnt remove)
+  removeButton = e => {
+    console.log("element:", e.dataset.x);
+    // e.parentNode.removeChild(e);
+    // e.remove();
+    e.style.display = "none";
+    // this last way is able to apply any style for an element
+    document.getElementsByTagName("p")[0].style.border = "solid 1px red";
+    document.getElementsByTagName("p")[0].style.fontFamily = "arial";
+    document.getElementsByTagName("p")[0].style.color = "red";
+  }
   
   create1Node = () => {
     // const firstButton = document.getElementsByTagName("button")[1];

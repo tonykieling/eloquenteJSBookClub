@@ -11,6 +11,17 @@
   </style>
 </head>
 <body>
+  <div
+    id        = “my-div-id”
+    class     = “my-div-class”
+    onClick   = alert(this.dataset.test)
+    style     = "border: solid 1px blue; color: brown;"
+    data-test ="this is test"
+  >
+    <span>
+      Hello World!
+    </span>
+  </div>
   <button onclick=printDoc()>printDoc</button>
   <!-- <button onclick=myF(document)>nodeType</button> -->
   <br><br><br>
@@ -31,11 +42,14 @@
   // window.addEventListener("scroll", () => alert("scrolling page"));
 
   //event listener to get a click in any part of the page
-  // window.onclick = () => {
-  //   alert("clicked\n window.pageYOffset: " + window.pageYOffset);
-  // }
+  window.onclick = () => {
+    // alert("clicked\n window.pageYOffset: " + window.pageYOffset);
+    const element = document.getElementById("tf");
+    tf.style.position = "relative";
+    console.log(element.attributes.style);
+  }
 
-  //window event listener to check hwne the user scrolls the page's bottom
+  // window event listener to check when the user scrolls the page's bottom
   window.onscroll = function() {
     if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
       alert(`At the bottom!\n innerHeight: ${window.innerHeight}\npageYOffset: ${window.pageYOffset}\n body.offsetHeight: ${document.body.offsetHeight}\n ${document.body.getBoundingClientRect()}`);
@@ -44,10 +58,12 @@
 
   console.log("14");
   const tempVar = document.getElementById("tf");
+  console.log(tempVar.attributes)
+  console.log(Array.from(tempVar.attributes))
   console.log("tF button parentNode:");
   // console.log(tempVar.offsetHeight);
   // console.log(tempVar.clientHeight);
-  console.log(tempVar.getBoundingClientRect());
+  console.log(tempVar.parentNode.getBoundingClientRect());
   console.log(pageXOffset, pageYOffset)
 
   // console.log(tempVar.parentNode);

@@ -67,6 +67,7 @@
 </html>
 -->
 
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,7 +75,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
-<!-- <body onload="checkAllElements()"> -->
   <body>
   <p id="fp">And if you go chasing <span class="animal">rabbits</span></p>
   <p>And you know you're going to fall</p>
@@ -107,4 +107,43 @@
   // document.addEventListener("load", () => {
 </script>
 </html>
+-->
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p style="text-align: center">
+    <img id="mimg" src="14-viewport.png" style="position: relative">
+  </p>
+</body>
+
+<script>
+  let img = document.querySelector("img");
+  // let img = document.getElementById("mimg");
+  // https://www.techiedelight.com/change-size-of-image-with-javascript/
+  // img.style.width = "10%"
+  img.width = 40
+  console.log(img.getBoundingClientRect())
+  console.log(img.width)
+  let angle = Math.PI / 2;
+
+  function animate(time, lastTime) {
+    // console.log(time, lastTime) //?????
+    if (lastTime != null) {
+      angle += (time - lastTime) * 0.001;
+    }
+    img.style.top = (Math.sin(angle) * 20) + "px";
+    img.style.left = (Math.cos(angle) * 200) + "px";
+    // console.log(newTime) //?????
+    // requestAnimationFrame(newTime => animate(newTime, time));
+  }
+
+  requestAnimationFrame(animate);
+</script>  
+</html>

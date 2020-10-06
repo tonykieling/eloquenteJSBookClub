@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="table-output">
+  </div>
+  <button onclick="addTable()">Add Table</button>
+</body>
+<script>
+  console.log(document)
+  const data = [
+    {
+      name  : "Kilimanjaro",
+      height: 5895,
+      place : "Tanzania"
+    },
+    {
+      name  : "Mountain1",
+      height: 1000,
+      place : "Canada"
+    },
+    {
+      name  : "Mountain2",
+      height: 2000,
+      place : "Canada"
+    }
+  ];
+  addTable = () => {
+    let table = document.createElement("table");
+    let addHeader = document.createElement("tr");
+    
+    const hName = document.createElement("th");
+    // hName.style.border = "solid 1px blue";
+    const name = document.createTextNode("Name");
+    hName.appendChild(name);
+    
+    const hHeight = document.createElement("th");
+    const height = document.createTextNode("Height");
+    hHeight.appendChild(height);
+
+    const hPlace = document.createElement("th");
+    const place = document.createTextNode("Place");
+    hPlace.appendChild(place);
+
+    addHeader.appendChild(hName);
+    addHeader.appendChild(hHeight);
+    addHeader.appendChild(hPlace);
+    table.appendChild(addHeader);
+
+
+    console.log("Table created: " + table);
+    // table = data.map(e => {
+    //   console.log(e)
+    // })
+
+    table.style.border = "solid 1px red";
+    let output = document.getElementById("table-output");
+    output.appendChild(table);
+    // table data
+    console.log(document)
+  }
+</script>
+</html>

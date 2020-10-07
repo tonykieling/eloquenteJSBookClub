@@ -11,7 +11,6 @@
   <button onclick="addTable()">Add Table</button>
 </body>
 <script>
-  console.log(document)
   const data = [
     {
       name  : "Kilimanjaro",
@@ -29,12 +28,12 @@
       place : "Canada"
     }
   ];
+
   addTable = () => {
     let table = document.createElement("table");
     let addHeader = document.createElement("tr");
     
     const hName = document.createElement("th");
-    // hName.style.border = "solid 1px blue";
     const name = document.createTextNode("Name");
     hName.appendChild(name);
     
@@ -51,17 +50,29 @@
     addHeader.appendChild(hPlace);
     table.appendChild(addHeader);
 
+    data.forEach(e => {
+      const newRow = document.createElement("tr");
+      
+      const name = document.createElement("td");
+      name.innerHTML = e.name;
+      newRow.appendChild(name);
 
-    console.log("Table created: " + table);
-    // table = data.map(e => {
-    //   console.log(e)
-    // })
+      const height = document.createElement("td");
+      height.innerHTML = e.height;
+      height.style.textAlign = "right";
+      newRow.appendChild(height);
 
+      const place = document.createElement("td");
+      place.innerHTML = e.place;
+      newRow.appendChild(place);
+
+      table.appendChild(newRow);
+    });
+
+    table.id = "mountains"
     table.style.border = "solid 1px red";
     let output = document.getElementById("table-output");
     output.appendChild(table);
-    // table data
-    console.log(document)
   }
 </script>
 </html>

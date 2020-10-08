@@ -7,10 +7,47 @@
 </head>
 <body>
   <div id="table-output">
+    <div>ola</div>
   </div>
   <button onclick="addTable()">Add Table</button>
+  <div id="search-output"></div>
+  <div>
+    <button onclick="myGetElementByTagName(document.body, 'div')">Search element</button>
+    <div id="get-output" style="display: none;">
+
+    </div>
+  </div>
 </body>
+
 <script>
+
+  myGetElementByTagName = (node, t) => {
+    let result = [];
+    const tagToFind = t.toUpperCase();
+
+    function explore(e) {
+        for (let count = 0; count < e.childNodes.length; count++) {
+          let child = e.childNodes[count];
+          if (child.nodeType == document.ELEMENT_NODE) {
+            if (child.nodeName == tagToFind) result.push(child);
+            explore(child);
+          }
+        }
+      }
+
+    explore(node);
+    
+    let k = document.getElementById("get-output")
+    k.style.display = "block";
+    if (result.length) {
+      console.log(result)
+      k.innerHTML = "check console"
+    } else {
+      console.log("no data :/");
+      k.innerHTML = "no data :/"
+    } 
+  };
+
   const data = [
     {
       name  : "Kilimanjaro",
@@ -33,17 +70,16 @@
     let table = document.createElement("table");
     let addHeader = document.createElement("tr");
     
-    const hName = document.createElement("th");
-    const name = document.createTextNode("Name");
-    hName.appendChild(name);
+    const hName     = document.createElement("th");
+    hName.innerHTML = "Name"
+    // const name = document.createTextNode("Name");
+    // hName.appendChild(name);
     
-    const hHeight = document.createElement("th");
-    const height = document.createTextNode("Height");
-    hHeight.appendChild(height);
+    const hHeight     = document.createElement("th");
+    hHeight.innerHTML = "Height";
 
-    const hPlace = document.createElement("th");
-    const place = document.createTextNode("Place");
-    hPlace.appendChild(place);
+    const hPlace      = document.createElement("th");
+    hPlace.innerHTML  = "Place";
 
     addHeader.appendChild(hName);
     addHeader.appendChild(hHeight);

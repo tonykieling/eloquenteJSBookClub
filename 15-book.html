@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="bt1">Click me 1</button>
+  <button id="bt2">Remove 'Click me1' button</button>
+  <button id="bt3">Click me 2</button>
+  <button id="bt4">Remove 'Click me2' button</button>
+  
+</body>
+<script>
+
+  // same as window.onclick. It receives two arguments, 1- is the event, 2- what to do when 1 happens
+  // window.addEventListener("click", () => console.log(`clicked at ${new Date()}`));
+
+  // let clicksCount = 0;
+  // window.onclick = () =>  {
+  //   clicksCount++;
+  //   console.log(`${clicksCount}- clicked at ${Date.now()/1000}`);
+  // }
+
+  const bt1 = document.getElementById("bt1");
+  const bt2 = document.getElementById("bt2");
+
+  let c = 0;
+  test = () => {
+    c++;
+    console.log(c, "this is test");
+  };
+
+  removeEvent = () => {
+    console.log(`event got removed!`);
+    // bt1.removeEventListener("click", () => test()); // does not work, even though being registered with the same method caller
+    bt1.removeEventListener("click", test);
+
+  };
+
+  bt1.addEventListener("click", test);
+
+  bt2.addEventListener("click", removeEvent);
+
+</script>
+</html>

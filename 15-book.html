@@ -8,12 +8,101 @@
 <body>
   <button id="bt1">Click me 1</button>
   <button id="bt2">Remove 'Click me1' button</button>
-  <button id="bt3">Click me 2</button>
-  <button id="bt4">Remove 'Click me2' button</button>
+
+  <!-- 
+  //propagation
+  <p>A paragraph with a <button id="bt3">button</button>.</p>
+  <script>
+    let para = document.querySelector("p");
+    let button = document.getElementById("bt3");
+
+    para.addEventListener("mousedown", event => {
+      console.log("Handler for paragraph.", event.target);
+    });
+
+    button.addEventListener("mousedown", event => {
+      console.log("Handler for button.", event.target);
+      if (event.button == 1) event.stopPropagation();
+    });
+  </script> -->
+
+
+  <!-- <script>
+    document.addEventListener("click", event => {
+      if (event.target.nodeName == "BUTTON") console.log("click on button");
+      else console.log("click outiside any button");
+    });
+  </script> -->
+
   
+  <!-- <p>This page turns violet when you hold the V key.</p>
+  <script>
+    window.addEventListener("keydown", event => {
+      if (event.key == "v") {
+        document.body.style.background = "violet";
+        console.log(event.type, event.key);
+      }
+    });
+
+    window.addEventListener("keyup", event => {
+      if (event.key == "v") document.body.style.background = "";
+    });
+  </script> -->
+
+
+  <!-- <p>Press Control-Shift-letter a to continue.</p>
+  <script>
+    window.addEventListener("keydown", event => {
+      if (event.key == "A" && event.ctrlKey) {
+        //space = " "
+        //* = "*"
+        // event.preventDefault(); // it disable for example select all for ctrl+a
+        console.log("Continuing!");
+      }
+    });
+  </script> -->
+
+
+  <!-- <input type="text" id="t">
+  <script>
+    const t = document.getElementById("t");
+    t.addEventListener("input", event => {
+      console.log("texting ", event.data);
+      console.log("texting ", event.target.value);
+    });
+  </script> -->
+
+
+  <p>Drag the bar to change its width:</p>
+  <div style="background: orange; width: 60px; height: 20px"></div>
+  <script>
+    let lastX; // Tracks the last observed mouse X position
+    let bar = document.querySelector("div");
+    bar.addEventListener("mousedown", event => {
+      console.log(event.button)
+      if (event.button == 0) {
+        lastX = event.clientX;
+        window.addEventListener("mousemove", moved);
+        // event.preventDefault(); // Prevent selection
+      }
+    });
+
+    function moved(event) {
+      console.log(event.buttons)
+      if (event.buttons == 0) {
+        window.removeEventListener("mousemove", moved);
+      } else {
+        let dist = event.clientX - lastX;
+        let newWidth = Math.max(10, bar.offsetWidth + dist);
+        bar.style.width = newWidth + "px";
+        lastX = event.clientX;
+      }
+    }
+  </script>
 </body>
 <script>
 
+  /*
   // same as window.onclick. It receives two arguments, 1- is the event, 2- what to do when 1 happens
   // window.addEventListener("click", () => console.log(`clicked at ${new Date()}`));
 
@@ -22,7 +111,10 @@
   //   clicksCount++;
   //   console.log(`${clicksCount}- clicked at ${Date.now()/1000}`);
   // }
+  */
 
+
+  /*
   const bt1 = document.getElementById("bt1");
   const bt2 = document.getElementById("bt2");
 
@@ -40,8 +132,38 @@
   };
 
   bt1.addEventListener("click", test);
-
   bt2.addEventListener("click", removeEvent);
+  */
+
+  
+  /*
+  let button = document.querySelector("button");
+  button.addEventListener("mousedown", event => {
+    console.log(event.type);
+    event.preventDefault();
+  //button.addEventListener("click", event => { // click event considers only the left button click
+      if (event.button == 0) console.log("Left button");
+    else if (event.button == 1) console.log("Middle button");
+    else if (event.button == 2) {
+      event.preventDefault(); // it doesnt work to prevent context menu. Should use contextmenu 
+      console.log("Right button"); 
+    }
+  });
+
+  // it prevents context menu for all document, nut can be for only one element
+  document.addEventListener("contextmenu", event => event.preventDefault()); 
+  */
+ 
+  /*
+  document.addEventListener("mousedown", () => console.log("1- mousedown"));
+  document.addEventListener("mouseenter", ()=> console.log("2- mouseenter"));
+  document.addEventListener("mouseleave", ()=> console.log("3- mouseleave"));
+  document.addEventListener("mousemove", ()=> console.log("4- mousemove"));
+  document.addEventListener("mouseout", ()=> console.log("5- mouseout"));
+  document.addEventListener("mouseover", ()=> console.log("6- mouseover"));
+  document.addEventListener("mouseup", ()=> console.log("7- mouseup"));
+  document.addEventListener("click", ()=> console.log("8- click"));
+  */
 
 </script>
 </html>

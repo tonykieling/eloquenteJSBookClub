@@ -200,7 +200,7 @@ const x = (i, v) => new Promise((res, rej) => {
 x(1, 500)
   // .then(m => console.log(m))
   .then(y => x(2, y)
-    .then(m => console.log("\t" + m))
+    .then(m => console.log(`\t ${m}`))
   )
   // .then(console.log("m"))
   // .then(process.stdout.write("asd"))

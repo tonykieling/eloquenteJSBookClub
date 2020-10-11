@@ -73,7 +73,7 @@
   </script> -->
 
 
-  <p>Drag the bar to change its width:</p>
+  <!-- <p>Drag the bar to change its width:</p>
   <div style="background: orange; width: 60px; height: 20px"></div>
   <script>
     let lastX; // Tracks the last observed mouse X position
@@ -88,7 +88,7 @@
     });
 
     function moved(event) {
-      console.log(event.buttons)
+      console.log("-", event.buttons)
       if (event.buttons == 0) {
         window.removeEventListener("mousemove", moved);
       } else {
@@ -98,7 +98,122 @@
         lastX = event.clientX;
       }
     }
+  </script> -->
+
+
+  <!-- <style>
+    doti { 
+      position: absolute; 
+      /* display: block; */
+      border: 2px solid red; 
+      border-radius: 50px;
+      height: 100px; width: 100px; }
+  </style>
+  <p>Touch this page</p>
+
+  <script>
+    function update(event) {
+      // for (let dot; dot = document.querySelector("doti");) {
+      // for (let dot; dot = document.getElementById("dotiId");) {
+      for (let dot; dot = document.querySelector("#dotiId");) {
+        console.log("removed")
+        dot.remove();
+      }
+      for (let i = 0; i < event.touches.length; i++) {
+        let {pageX, pageY} = event.touches[i];
+        let dot = document.createElement("doti");
+        dot.id = "dotiId";
+        dot.style.left = (pageX - 50) + "px";
+        dot.style.top = (pageY - 50) + "px";
+        document.body.appendChild(dot);
+      }
+    }
+    window.addEventListener("touchstart", update);
+    window.addEventListener("touchmove", update);
+    window.addEventListener("touchend", update);
+  </script> -->
+
+
+  <!-- <style>
+    #progress {
+      /* border-bottom: 5px solid blue; */
+      width: 0;
+      position: fixed;
+      left: 0;
+      top: 0; 
+      /* bottom: 0; */
+    }
+  </style>
+
+  <div id="progress"></div>
+  <script>
+    // Create some content
+    document.body.appendChild(document.createTextNode("supercalifragilisticexpialidocious ".repeat(1000)));
+    let bar = document.querySelector("#progress");
+    window.addEventListener("scroll", () => {
+      let max = document.body.scrollHeight - innerHeight;
+      let pos = ((pageYOffset / max) * 100);
+      bar.style.width = `${pos}%`;
+      bar.innerHTML = (pos >= 1) ? `${Math.floor(pos)}%` : "";
+      bar.style.textAlign = "center";
+      bar.style.background = "grey";
+      bar.style.bottom = bar.style.height;
+      // bar.style.top = 800;
+      // console.log("document.body.scrollHeight", document.body.scrollHeight)
+      // console.log("innerHeight", innerHeight)
+      // console.log("max", max)
+      // console.log("pageYOffset", pageYOffset)
+    });
+  </script> -->
+
+
+  <p>Name: <input type="text" id="name" data-help="Your full name" autofocus="autofocus"></p>
+  <p>Age: <input type="text" id="age" data-help="Your age in years"></p>
+  <p id="help"></p>
+
+  <script>
+
+    window.addEventListener("load", () => {
+      console.log("Iiiiiiiiiiiiiii")
+      document.querySelector("#name").focus();
+    });
+
+    let help = document.querySelector("#help");
+    let fields = document.querySelectorAll("input");
+    // console.log("fields", fields)
+    for (let field of Array.from(fields)) {
+      // console.log("field", field)
+      field.addEventListener("focus", event => {
+        let text = event.target.getAttribute("data-help");
+        help.textContent = text;
+      });
+      
+      field.addEventListener("blur", event => {
+        help.textContent = "";
+      });
+
+      field.addEventListener("keypress", event => {
+        // console.log("event", event.code)
+        if (event.code.toUpperCase() === "ENTER") {
+          if (event.target.value) {
+            if (field.id === "name") document.querySelector("#age").focus();
+            else if (field.id === "age"){
+              document.querySelector("#age").blur();
+              help.textContent = "Done!!";
+            } 
+          } else {
+            if (field.id === "name")
+              help.textContent = (help.textContent.length < 22) ? `Please, ${help.textContent}` : "Please, Type your full name.";
+            else if (field.id === "age")
+              help.textContent = (help.textContent.length < 20) ? `Please, ${help.textContent}` : "Please, Type your full age.";
+          }
+            
+        }
+      });
+    }
   </script>
+
+
 </body>
 <script>
 
@@ -165,5 +280,16 @@
   document.addEventListener("click", ()=> console.log("8- click"));
   */
 
+  // document.addEventListener("touchstart", () => console.log("starting touch"))
+
+  console.log("window")
+  console.log(window)
+  console.log("document")
+  console.log(document)
+
+  window.onload = () => {
+    console.log("xxxxxxxxxxxxxxx")
+    document.querySelector("#name").focus();
+  };
 </script>
 </html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+
+
+<script>
+  // it checks whether the browser supports web worker
+  if (window.Worker) console.log("yes, window.worker");
+  
+  //it does NOT work because the browser does not accept loading a local file
+  let squareWorker = new Worker("code/squareworker.js");
+
+  // the local file converted to a base64 // it works!
+  // https://stackoverflow.com/questions/21408510/chrome-cant-load-web-worker
+  // let squareWorker = new Worker("data:text/plain;base64,YWRkRXZlbnRMaXN0ZW5lcigibWVzc2FnZSIsIGV2ZW50ID0+IHsKICBjb25zb2xlLmxvZygiaW5zaWRlIHNxdWFyZXdvcmtlciIpOwogIHBvc3RNZXNzYWdlKGV2ZW50LmRhdGEgKiBldmVudC5kYXRhKTsKfSk7");
+  
+  
+  squareWorker.addEventListener("message", event => {
+    console.log("The worker responded:", event.data);
+  });
+  
+  squareWorker.postMessage(10);
+  squareWorker.postMessage(24);
+</script>
+</html>

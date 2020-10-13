@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h3 id="base-size">Arrow-up to Inflate the balloon</h3>
+  <h3>Arrow-down to Deflate it</h3>
+  <span id="balloon-place">
+  </span>
+</body>
+<script>
+  const balloon = document.getElementById("balloon-place");
+  balloon.innerText = "🎈";
+  balloon.style.fontSize = "12px";
+  
+  const explosion = "💥";
+  let previousWidth = 0;
+  let actualWidth = parseFloat(window.getComputedStyle(document.getElementById("base-size"), null).getPropertyValue("width"));
+  // about computed dimension of a html element
+  // https://www.javascripttutorial.net/javascript-dom/javascript-width-height/
+  
+  document.addEventListener("keydown", event => {
+    if (actualWidth !== previousWidth) console.log("XXXXXXXXXXXXXXXX")
+    previousWidth = actualWidth;
+    // console.log(event.key === "ArrowUp" || event.key === "ArrowDown")
+    // console.log(event.keyCode === 38 || event.keyCode === 40)
+    // console.log("fontsize:", parseInt(balloon.style.fontSize));
+    
+    // let x = window.getComputedStyle(balloon);
+//     console.log("balloon width", balloon.offsetHeight)
+//     console.log("document width", document.body.clientHeight)
+// console.log("1", document.documentElement.clientHeight)
+// console.log("2", document.documentElement.scrollHeight)
+// console.log("3", document.height)
+console.log(window.getComputedStyle(document.getElementById("base-size"), null).getPropertyValue("width"));
+
+if (window.innerWidth > document.body.clientWidth) {
+  // console.log("window.innerWidth", window.innerWidth)
+  // console.log("document.body.clientWidth", document.body.clientWidth)
+	// alert("Page has a vertical scroll bar");
+}
+
+    // // about computedstyle
+    // // https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle
+    // var style = window.getComputedStyle(balloon, null).getPropertyValue("font-size");
+    // var h = parseFloat(style);
+    // console.log("h", h)
+
+    if (event.key === "ArrowUp") {
+      balloon.style.fontSize = (parseInt(balloon.style.fontSize) * 1.3) + "px";
+    } else if (event.key === "ArrowDown") {
+      balloon.style.fontSize = (parseInt(balloon.style.fontSize) * 0.9) + "px";
+    } else console.log("Another key got hit");
+  });
+</script>
+</html>

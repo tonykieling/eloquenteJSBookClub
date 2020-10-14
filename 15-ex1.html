@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <link rel="icon" href="data:;base64,iVBORw0KGgo="> 
+  <!-- after adding beep, there is a 404 favicon error, which was suppressed by the above line. -->
   <title>Document</title>
 </head>
 <body>
@@ -20,11 +21,11 @@
   }
 </style>
 <script>
-  const balloon = document.getElementById("balloon-place");
-  const explosion = "💥";
   // about computed dimension of a html element
   // https://www.javascripttutorial.net/javascript-dom/javascript-width-height/
   
+  const balloon = document.getElementById("balloon-place");
+  const explosion = "💥";
   const initialWidth  = window.getComputedStyle(document.getElementById("base-size"), null).getPropertyValue("width");
   const initialHeight = document.documentElement.clientHeight;
   let currentWidth, currentHeight;
@@ -54,18 +55,17 @@
       currentHeight = document.documentElement.clientHeight;
 
       if ((initialWidth !== currentWidth) || (initialHeight !== currentHeight)){
-        //should create a function to call explosion, add a timeout/explosion moving, may a noise
         callExplosion();
       } 
     }
-    console.log(event.type)
-    if (event.type === "click") fillBalloon();
+
     // // about computedstyle
     // // https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle
     // var style = window.getComputedStyle(balloon, null).getPropertyValue("font-size");
     // var h = parseFloat(style);
     // console.log("h", h)
-
+    
+    if (event.type === "click") fillBalloon();
     if (event.key === "ArrowUp") {
       fillBalloon();
     } else if (event.key === "ArrowDown") {
@@ -77,7 +77,6 @@
   const starting = () => {
     balloon.innerText = "🎈";
     balloon.style.fontSize = "30px";
-    // balloon.style.fontSize = "300px";
     currentWidth  = 0,
     currentHeight = 0;
     document.getElementById("bt").style.display = "none";

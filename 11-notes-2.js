@@ -30,7 +30,7 @@ const promise1 = p => new Promise(x(p));
     
     [ ...Array(10).keys() ].forEach(e => console.log(e));
     setTimeout(() =>
-    console.log("timeout")
+      console.log("timeout")
     , 0);
     // console.log(await promise1(789));
     console.time();

@@ -6,33 +6,98 @@
   <title>Document</title>
 </head>
 <body>
-  <p>This is a HTML p</p>
-  <svg xmlns="http://www.w3.org/2000/svg">
-    <circle r="50" cx="50" cy="50" fill="red"/>
-    <rect x="120" y="5" width="90" height="90" stroke="blue" fill="none"/>
-  </svg>
+  <!-- SVG example -->
+  <div style="border: olivedrab 1px solid;">
+    <div style="margin: 1rem;">
+      <h1 style="text-align: center;">SVG example</h1>
+      <p>This is a HTML p</p>
+      <svg xmlns="http://www.w3.org/2000/svg">
+        <circle r="50" cx="50" cy="50" fill="red"/>
+        <rect x="120" y="5" width="90" height="90" stroke="blue" fill="none"/>
+      </svg>
+    </div>
+  </div>
 
-  <canvas width="600" height="300"></canvas>
+  <!-- CANVAS examples -->
+  <div style="border: olivedrab 1px solid;">
+    <div style="margin: 1rem;">
+      <h1 style="text-align: center;">CANVAS examples</h1>
+      <p>Before canvas</p>
+      <canvas id="c1" width="600" height="300"></canvas>
+      <p>After canvas</p>
+
+      <canvas id="c2" style="border: maroon 1px solid;"></canvas>
+      <canvas id="c3" style="display: block; border: gray 1px solid;" width="600" height="250"></canvas>
+      <canvas id="c4" width="165" height="50"></canvas>
+    </div>
+  </div>
+
 </body>
 <script>
+  // using SVG
   let circle = document.querySelector("circle");
   circle.setAttribute("fill", "cyan");
 
-  
-  let cx = document.querySelector("canvas").getContext("2d");
+  // using CANVAS  
+  // c1 - fractal
+  let cv1 = document.querySelector("#c1").getContext("2d");
   function branch(length, angle, scale) {
-    cx.fillRect(0, 0, 1, length);
+    cv1.fillRect(0, 0, 1, length);
     if (length < 8) return;
-    cx.save();
-    cx.translate(0, length);
-    cx.rotate(-angle);
+    cv1.save();
+    cv1.translate(0, length);
+    cv1.rotate(-angle);
     branch(length * scale, angle, scale);
-    cx.rotate(2 * angle);
+    cv1.rotate(2 * angle);
     branch(length * scale, angle, scale);
-    cx.restore();
+    cv1.restore();
   }
-  cx.translate(300, 0);
-  branch(50, 0.5, 0.8);
+  cv1.translate(300, 0);
+  branch(65, 0.5, 0.8);
 
+  // c2 boxes
+  let cx = document.getElementById("c2").getContext("2d");
+  cx.strokeStyle = "blue";
+  cx.strokeRect(5, 5, 50, 50);
+  cx.lineWidth = 5;
+  cx.strokeStyle = "red"
+  cx.strokeRect(135, 5, 50, 50);
+
+  // c3 lines, triangle (actually, paths)
+  // LINES
+  let c3 = document.querySelector("#c3").getContext("2d");
+  c3.beginPath();
+  for (let y = 10; y < 100; y += 10) {
+    c3.moveTo(10, y);
+    c3.lineTo(90, y);
+  }
+  c3.stroke();
+  c3.closePath();
+
+  // TRIANGLE
+  c3.beginPath();
+  c3.moveTo(75, 50);
+  c3.lineTo(100, 75);
+  c3.lineTo(100, 25);
+  c3.fill();
+
+  // trapeze
+  c3.beginPath();
+  c3.strokeStyle = "red";
+  c3.moveTo(300, 75);
+  c3.lineTo(450, 75);
+  c3.lineTo(550, 200);
+  c3.lineTo(200, 200);
+  c3.lineTo(300, 75);
+  c3.stroke();
+  c3.fillStyle = "green";
+  c3.fill();
+
+
+  // c4 text
+  let c4 = document.querySelector("#c4").getContext("2d");
+  c4.font = "28px Georgia";
+  c4.fillStyle = "fuchsia";
+  c4.fillText("I can draw text, too!", 10, 50);
 </script>
 </html>

@@ -6,48 +6,68 @@
   <link rel="icon" href="data:;base64,iVBORw0KGgo="> 
   <!-- after adding beep, there is a 404 favicon error, which was suppressed by the above line. -->
   <title>Document</title>
+  <style>
+    body{
+      margin: 1rem;
+      background-color: dodgerblue;
+    }
+    /*
+     Issues with the width and height of CSS container and child elements
+     https://www.webomelette.com/css-float-parent-container-child-element-hight-width */
+    #first-div {
+      overflow: auto;
+      width: 100%;
+      display: inline-block;
+    }
+    #main-div{
+      /* border: teal 1px solid; */
+      display: flex;
+      justify-content: center; /* horizontal */
+      align-items: center; /* vertical */
+    }
+  
+  </style>
 </head>
-<body>
-  <div id="first-div">
-    <h3 id="base-size">Arrow-up to Inflate the balloon</h3>
-    <h3>Arrow-down to Deflate it</h3>
-  </div>
+<body style="margin: 1rem;">
+  <div id="big-div">
+    <div id="first-div">
+      <h3 id="base-size">Arrow-up to Inflate the balloon</h3>
+      <h3>Arrow-down to Deflate it</h3>
+    </div>
 
-  <div id="main-div" style="text-align: center; border: teal 1px solid">
-    <button id="bt" onclick="starting()" style="background-color: springgreen; width: 10rem; height: 5rem; position: absolute">Again!!</button>
-    <span id="balloon-place">
+    <!-- <div id="main-div" style="text-align: center; border: teal 1px solid; vertical-align: middle"> -->
+    <div id="main-div" style="border: teal 1px solid;">
+    <!-- <div id="main-div"> -->
+      <button id="bt" onclick="starting()" style="background-color: springgreen; width: 10rem; height: 5rem; position: absolute">Again!!</button>
+      <span id="balloon-place"></span>
+    </div>
   </div>
-  </span>
 </body>
-<style>
-  body{
-    background-color: dodgerblue;
-  }
-</style>
+
 <script>
   // about computed dimension of a html element
   // https://www.javascripttutorial.net/javascript-dom/javascript-width-height/
   
   const balloon = document.getElementById("balloon-place");
   const explosion = "💥";
-  const initialWidth  = window.getComputedStyle(document.getElementById("base-size"), null).getPropertyValue("width");
-  const initialHeight = document.documentElement.clientHeight;
-  console.log("initialHeight", initialHeight)
-  // console.log("initialWIdth", initialWidth)
-  const firstDiv = parseInt(window.getComputedStyle(document.getElementById("first-div"), null).getPropertyValue("height"));
+  const screenlWidth  = window.getComputedStyle(document.getElementById("base-size"), null).getPropertyValue("width");
   
-  console.log("firstDiv", firstDiv);
-  const mainDivHeight = initialHeight - firstDiv;
-  console.log("mainDivHeight", mainDivHeight)
-  console.log("FIRSTDIV-HEIGHT:")
 
+    const screenHeight = Math.floor(document.documentElement.clientHeight);
+    const mainDivTop = Math.ceil(document.getElementById("main-div").getBoundingClientRect().top);
 
-  /**
-   * need to devide:
-   *  clientHeight
-   *  offsetHeight OR
-   *  window.getComputedStyle(document.getElementById("main-div"), null).getPropertyValue("height")
-  */
+    const bodyMarginBottom = parseInt(window.getComputedStyle(document.body).getPropertyValue("margin-bottom"));
+
+    const mainDivBorderTop = parseInt(document.getElementById("main-div").style.borderTop);
+    const mainDivBorderBottom = parseInt(document.getElementById("main-div").style.borderBottom);
+
+    const roomAfter = parseInt(window.getComputedStyle(document.documentElement, null).getPropertyValue("font-size"));
+
+    const mainDivHeight = screenHeight - mainDivTop - bodyMarginBottom - mainDivBorderTop - mainDivBorderBottom - roomAfter;
+    
+    // it defines main-div accordingly to the device it is being shown on
+    document.getElementById("main-div").style.height = `${mainDivHeight}px`;
+
 
 
   // document.getElementById("main-div").style.height = `${mainDivHeight}px`;;
@@ -79,7 +99,7 @@
       currentWidth = window.getComputedStyle(document.getElementById("base-size"), null).getPropertyValue("width");
       currentHeight = document.documentElement.clientHeight;
 
-      if ((initialWidth !== currentWidth) || (initialHeight !== currentHeight)){
+      if ((screenlWidth !== currentWidth) || (screenHeight !== currentHeight)){
         callExplosion();
       } 
     }
@@ -90,14 +110,18 @@
     // var h = parseFloat(style);
     // console.log("h", h)
     
+
     if (event.type === "click") pumpBalloon();
     if (event.key === "ArrowUp") {
       pumpBalloon();
+      console.log("computedstyle big div", parseInt(window.getComputedStyle(document.getElementById("big-div"), null).getPropertyValue("height")));
+  console.log("clientHeight", document.getElementById("big-div").clientHeight)
+  console.log("clientHeight", document.getElementById("big-div").offsetHeight)
     } else if (event.key === "ArrowDown") {
       balloon.style.fontSize = (parseInt(balloon.style.fontSize) * 0.9) + "px";
     } 
-    else if (event.key === "Enter") drummroll();
-    else pew();
+    // else if (event.key === "Enter") drummroll();
+    // else pew();
   }
 
   // method to start the environment

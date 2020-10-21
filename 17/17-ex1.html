@@ -26,13 +26,13 @@
   </div>
   <div id="div-main">
     <div id="div-1">
-      <canvas id="canvas-1" style="height: 101px; width: 500px;"></canvas>
+      <canvas id="canvas-1" style="height: 100px; width: 200px;"></canvas>
     </div>
     <div id="div-2">
-      <canvas id="canvas-2" style="height: 101px; width: 500px;"></canvas>
+      <canvas id="canvas-2" style="height: 100px; width: 200px;"></canvas>
     </div>
     <div id="div-3">
-      <canvas id="canvas-3" style="height: 101px; width: 500px;"></canvas>
+      <canvas id="canvas-3" style="height: 100px; width: 200px;"></canvas>
     </div>
     <div id="div-4">
       <canvas id="canvas-4" style="height: 101px; width: 500px;"></canvas>
@@ -91,27 +91,58 @@
   // trapeze.height = parseFloat(div1.style.height); // it does NOT work
   trapeze.fillStyle = "white";
   trapeze.beginPath();
-  // trapeze.strokeStyle = "red";
+  trapeze.lineWidth = 5;
+  trapeze.strokeStyle = "gray";
   trapeze.moveTo(100, 25);
   trapeze.lineTo(200, 25);
   trapeze.lineTo(225, 125);
   trapeze.lineTo(75, 125);
-  trapeze.lineTo(100, 25);
+  trapeze.lineTo(102, 25);
   trapeze.stroke();
   trapeze.fill();
 
-  let diamond = document.querySelector("#canvas-2").getContext("2d");
+  // let diamond = document.querySelector("#canvas-2").getContext("2d");
   // trapeze.height = parseFloat(div1.style.height); // it does NOT work
-  diamond.fillStyle = "red";
-  diamond.beginPath();
-  diamond.strokeStyle = "red";
-  diamond.moveTo(125, 25);
-  diamond.lineTo(175, 25);
-  diamond.lineTo(75, 175);
-  diamond.lineTo(75, 125);
-  diamond.lineTo(100, 25);
-  diamond.stroke();
-  diamond.fill();
+  //first way, drawing a square with lines (paths)
+  // diamond.fillStyle = "red";
+  // diamond.beginPath();
+  // diamond.strokeStyle = "red";
+  // diamond.moveTo(150, 25);
+  // diamond.lineTo(200, 75);
+  // diamond.lineTo(150, 125);
+  // diamond.lineTo(100, 75);
+  // diamond.lineTo(150, 25);
+  // diamond.stroke();
+  // diamond.fill();
+
+  // second way, drawing a square using fillRect or strokeRect and rotating it
+  // https://stackoverflow.com/questions/8937727/rotate-square-on-its-axis-in-html5-canvas#:~:text=translate(cx%2C%20cy)%20changes,is%20in%20radians%2C%20not%20degrees)
+  const canvas = document.getElementById("canvas-2");
+  const diamond = canvas.getContext("2d");
+  diamond.fillStyle='red';
+  const deg = Math.PI/180;
+  diamond.translate((canvas.width/2), (canvas.height/2));
+  diamond.rotate(45 * deg);
+  diamond.fillRect(-50, -50, 100, 100);
+  diamond.strokeRect(-50, -50, 100, 100);
+
+
+  //ZIGZAG
+  const zigzag = document.querySelector("#canvas-3").getContext("2d");
+  console.log(zigzag)
+  zigzag.beginPath();
+  zigzag.strokeStyle = "blue";
+  zigzag.moveTo(50, 30);
+  zigzag.lineTo(250, 40);
+  zigzag.lineTo(50, 50);
+  zigzag.lineTo(250, 60);
+  zigzag.lineTo(50, 70);
+  zigzag.lineTo(250, 80);
+  zigzag.lineTo(50, 90);
+  zigzag.lineTo(250, 100);
+  zigzag.lineTo(50, 110);
+  zigzag.stroke();
+
 
 </script>
 </html>

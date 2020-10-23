@@ -3,19 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <title>Chapter 18th</title>
 </head>
 <body>
   <form method="GET" action="example/message.html">
     <p>Name: <input type="text" name="name"></p>
     <p>Message:<br><textarea name="message"></textarea></p>
-    <p><button type="submit" onclick="test()">Send</button></p>
+    <!-- type="submit"  -->
+    <p>
+      <button 
+        onclick="test(event)"
+        id="bt1"
+        name="bt1"
+        >Send
+      </button>
+    </p>
   </form>
 </body>
 <script>
-  // How to check all headers for a site
-  fetch("http://www.google.com")
-  // fetch("./18-book.html")
+  // const bt1 = document.querySelector("#bt1");
+  // bt1.addEventListener("click", event => {
+  //   event.preventDefault();
+  //   console.log("bt1", event.target.name)
+  // });
+
+  const test = event => {
+    event.preventDefault();
+    console.log("asdasd", event)
+  }
+  // How to check all headers received from a site when doing a fetch - data request
+  // note that because CORS, it will work only in the inspect inside from the site
+  fetch("./18-book.html")
+  // fetch("http://www.google.com")
+  // fetch("https://registro.br")
+    // .then(t => t.text())
+    // .then(t => console.log("TTT", t))
     .then(r => r.headers.forEach((value, name) => {
       console.log(name + ": " + value);
     }));

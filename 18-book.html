@@ -7,6 +7,7 @@
   <title>Chapter 18th</title>
 </head>
 <body>
+  <h2>With Form</h2>
   <form method="GET" action="example/message.html">
     <p>Name: <input type="text" name="name"></p>
     <p>Message:<br><textarea name="message"></textarea></p>
@@ -20,6 +21,16 @@
       </button>
     </p>
   </form>
+  <br><br>
+  
+  <h2>Without Form</h2>
+  <p><input type="text" value="abc"> (text)</p>
+  <p><input type="password" value="abc"> (password)</p>
+  <p><input type="checkbox" checked> (checkbox)</p>
+  <p><input type="radio" value="A" name="choice">
+  <input type="radio" value="B" name="choice" checked>
+  <input type="radio" value="C" name="choice"> (radio)</p>
+  <p><input type="file"> (file)</p>
 </body>
 <script>
   // const bt1 = document.querySelector("#bt1");
@@ -38,7 +49,7 @@
   // fetch("http://www.google.com")
   // fetch("https://registro.br")
     // .then(t => t.text())
-    // .then(t => console.log("TTT", t))
+    // .then(t => console.log("TtTtTt", t))
     .then(r => r.headers.forEach((value, name) => {
       console.log(name + ": " + value);
     }));

@@ -32,7 +32,7 @@
     <input type="radio" class="general-class" value="B" name="choice" checked>
     <input type="radio" class="general-class" value="C" name="choice"> (radio)
   </p>
-  <p><input type="file" class="general-class" multiple> (file)</p>
+  <p><input type="file" class="general-class" id="file" multiple> (file)</p>
   <textarea id="text-area" class="general-class" disabled>
     one
     two
@@ -79,19 +79,53 @@
   // handling input change events. - the 3 lines below work fine
   // const testActionOnGeneralClass = Array.from(document.getElementsByClassName("general-class"));
   // const testActionOnGeneralClass = Array.from(document.querySelectorAll(".general-class"));
-  const testActionOnGeneralClass = document.querySelectorAll(".general-class");
-  testActionOnGeneralClass.forEach(element => {
-    element.addEventListener("input", event => console.log("CHange!!", event.target));
-  });
+  // const testActionOnGeneralClass = document.querySelectorAll(".general-class");
+  // testActionOnGeneralClass.forEach(element => {
+  //   element.addEventListener("input", event => console.log("CHange!!", event.target));
+  // });
 
-  testActionOnGeneralClass.forEach(element => {
-    element.addEventListener("focus", event => {
-      console.log(`${element.type} got FOCUS`);
+  // testActionOnGeneralClass.forEach(element => {
+  //   element.addEventListener("focus", event => {
+  //     console.log(`${element.type} got FOCUS`);
+  //   });
+  // });
+
+  // testActionOnGeneralClass.forEach(element => {
+  //   element.addEventListener("blur", () => console.log(`  ${element.type} got blur`));
+  // });
+
+
+  // dealing with files
+  function readFileText(file) {
+    return new Promise((resolve, reject) => {
+      let reader = new FileReader();
+      reader.addEventListener("load", () => {
+        console.log("LOADING file");
+        resolve(reader.result)
+      });
+      reader.addEventListener("error", () => reject(reader.error));
+      console.log("before calling reader file");
+      reader.readAsText(file);
     });
-  });
+  }
 
-  testActionOnGeneralClass.forEach(element => {
-    element.addEventListener("blur", () => console.log(`  ${element.type} got blur`));
+  const fileInput = document.querySelector("#file");
+  fileInput.addEventListener("change", async() => {
+    console.log(`${fileInput.files.length} file${(fileInput.files.length > 1) ? "s" : ""} selected.`);
+    if (fileInput.files.length > 1) {
+      const files = Array.from(fileInput.files);
+      files.forEach((f, i) => console.log(`${i}- ${f.name} type: ${f.type} size: ${f.size}`));
+    } else {
+      console.log(`${fileInput.files[0].name} type: ${fileInput.files[0].type} size: ${fileInput.size}`);
+      console.log("------------------------------------------------------");
+      const file = fileInput.files[0];
+      console.log((file.type.slice(0, 4) === "text" ? "--- It's a TEXT file" : "--- NOT a Text file"));
+      // const fileContent = await readFileText(file);
+      // console.log(fileContent);
+      console.log(file)
+      readFileText(file)
+        .then(console.log);
+    }
   });
   
 </script>

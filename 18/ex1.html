@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fetching</title>
+</head>
+<body>
+  <button id="bt1"></button>
+  <button id="bt2"></button>
+  <button id="bt3"></button>
+  <div id="output"></div>
+</body>
+
+<script>
+  const buttons = document.querySelectorAll("button");
+  buttons.forEach((button, i) => {
+    console.log("starting button", button);
+    button.style = "width: 7rem; height: 3rem";
+    button.innerText = (i === 0) ? "Text" : (i === 1) ? "HTML" : "JSON";
+
+    button.addEventListener("click", async event => {
+
+      // query bindings definition
+      const URL = "https://eloquentjavascript.net/author";
+      const param1 = {Accept: 'text/plain'};
+      const param2 = {Accept: "text/html"};
+      const param3 = {Accept: "application/json"};
+
+      const output = document.querySelector("#output");
+      output.innerText = "";
+      const result = document.createElement("result");
+
+      let fetchResult = "";
+      switch(event.target.id){
+        case "bt1":
+          fetch(URL, {headers: param1})
+            .then(response => response.text())
+            .then(text => output.innerText = text);
+          break;
+        case "bt2":
+          fetch(URL, {headers: param2})
+            .then(response => response.text())
+            .then(text => output.innerText = text);
+          break;
+        case "bt3":
+          fetch(URL, {headers: param3})
+            .then(response => response.json())
+            .then(text => output.innerText = JSON.stringify(text));
+          break;
+      }
+    });
+  });
+
+</script>
+</html>

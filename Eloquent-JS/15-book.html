@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="bt1">Click me 1</button>
+  <button id="bt2">Remove 'Click me1' button</button>
+
+  <!-- 
+  //propagation
+  <p>A paragraph with a <button id="bt3">button</button>.</p>
+  <script>
+    let para = document.querySelector("p");
+    let button = document.getElementById("bt3");
+
+    para.addEventListener("mousedown", event => {
+      console.log("Handler for paragraph.", event.target);
+    });
+
+    button.addEventListener("mousedown", event => {
+      console.log("Handler for button.", event.target);
+      if (event.button == 1) event.stopPropagation();
+    });
+  </script> -->
+
+
+  <!-- <script>
+    document.addEventListener("click", event => {
+      if (event.target.nodeName == "BUTTON") console.log("click on button");
+      else console.log("click outiside any button");
+    });
+  </script> -->
+
+  
+  <!-- <p>This page turns violet when you hold the V key.</p>
+  <script>
+    window.addEventListener("keydown", event => {
+      if (event.key == "v") {
+        document.body.style.background = "violet";
+        console.log(event.type, event.key);
+      }
+    });
+
+    window.addEventListener("keyup", event => {
+      if (event.key == "v") document.body.style.background = "";
+    });
+  </script> -->
+
+
+  <!-- <p>Press Control-Shift-letter a to continue.</p>
+  <script>
+    window.addEventListener("keydown", event => {
+      if (event.key == "A" && event.ctrlKey) {
+        //space = " "
+        //* = "*"
+        // event.preventDefault(); // it disable for example select all for ctrl+a
+        console.log("Continuing!");
+      }
+    });
+  </script> -->
+
+
+  <!-- <input type="text" id="t">
+  <script>
+    const t = document.getElementById("t");
+    t.addEventListener("input", event => {
+      console.log("texting ", event.data);
+      console.log("texting ", event.target.value);
+    });
+  </script> -->
+
+
+  <!-- <p>Drag the bar to change its width:</p>
+  <div style="background: orange; width: 60px; height: 20px"></div>
+  <script>
+    let lastX; // Tracks the last observed mouse X position
+    let bar = document.querySelector("div");
+    bar.addEventListener("mousedown", event => {
+      console.log(event.button)
+      if (event.button == 0) {
+        lastX = event.clientX;
+        window.addEventListener("mousemove", moved);
+        // event.preventDefault(); // Prevent selection
+      }
+    });
+
+    function moved(event) {
+      console.log("-", event.buttons)
+      if (event.buttons == 0) {
+        window.removeEventListener("mousemove", moved);
+      } else {
+        let dist = event.clientX - lastX;
+        let newWidth = Math.max(10, bar.offsetWidth + dist);
+        bar.style.width = newWidth + "px";
+        lastX = event.clientX;
+      }
+    }
+  </script> -->
+
+
+  <!-- <style>
+    doti { 
+      position: absolute; 
+      /* display: block; */
+      border: 2px solid red; 
+      border-radius: 50px;
+      height: 100px; width: 100px; }
+  </style>
+  <p>Touch this page</p>
+
+  <script>
+    function update(event) {
+      // for (let dot; dot = document.querySelector("doti");) {
+      // for (let dot; dot = document.getElementById("dotiId");) {
+      for (let dot; dot = document.querySelector("#dotiId");) {
+        console.log("removed")
+        dot.remove();
+      }
+      for (let i = 0; i < event.touches.length; i++) {
+        let {pageX, pageY} = event.touches[i];
+        let dot = document.createElement("doti");
+        dot.id = "dotiId";
+        dot.style.left = (pageX - 50) + "px";
+        dot.style.top = (pageY - 50) + "px";
+        document.body.appendChild(dot);
+      }
+    }
+    window.addEventListener("touchstart", update);
+    window.addEventListener("touchmove", update);
+    window.addEventListener("touchend", update);
+  </script> -->
+
+
+  <!-- <style>
+    #progress {
+      /* border-bottom: 5px solid blue; */
+      width: 0;
+      position: fixed;
+      left: 0;
+      top: 0; 
+      /* bottom: 0; */
+    }
+  </style>
+
+  <div id="progress"></div>
+  <script>
+    // Create some content
+    document.body.appendChild(document.createTextNode("supercalifragilisticexpialidocious ".repeat(1000)));
+    let bar = document.querySelector("#progress");
+    window.addEventListener("scroll", () => {
+      let max = document.body.scrollHeight - innerHeight;
+      let pos = ((pageYOffset / max) * 100);
+      bar.style.width = `${pos}%`;
+      bar.innerHTML = (pos >= 1) ? `${Math.floor(pos)}%` : "";
+      bar.style.textAlign = "center";
+      bar.style.background = "grey";
+      bar.style.bottom = bar.style.height;
+      // bar.style.top = 800;
+      // console.log("document.body.scrollHeight", document.body.scrollHeight)
+      // console.log("innerHeight", innerHeight)
+      // console.log("max", max)
+      // console.log("pageYOffset", pageYOffset)
+    });
+  </script> -->
+
+
+  <p>Name: <input type="text" id="name" data-help="Your full name"></p>
+  <p>Age: <input type="text" id="age" data-help="Your age in years"></p>
+  <p id="help"></p>
+
+  <script>
+
+    // (pRun = () => console.log("first p has ran!!!"))();
+    window.onload = () => console.log("LOADED"); // does not work
+    window.addEventListener("load", () => console.log("LLLLLLLLLLLLLLLLL"));
+
+    
+    let help = document.querySelector("#help");
+    let fields = document.querySelectorAll("input");
+    // console.log("fields", fields)
+    for (let field of Array.from(fields)) {
+      // console.log("field", field)
+      field.addEventListener("focus", event => {
+        let text = event.target.getAttribute("data-help");
+        help.textContent = text;
+      });
+      
+      field.addEventListener("blur", event => {
+        help.textContent = "";
+      });
+
+      field.addEventListener("keypress", event => {
+        // console.log("event", event.code)
+        if (event.code.toUpperCase() === "ENTER") {
+          if (event.target.value) {
+            if (field.id === "name") document.querySelector("#age").focus();
+            else if (field.id === "age"){
+              document.querySelector("#age").blur();
+              help.textContent = "Done!!";
+            } 
+          } else {
+            if (field.id === "name")
+              help.textContent = (help.textContent.length < 22) ? `Please, ${help.textContent}` : "Please, Type your full name.";
+            else if (field.id === "age")
+              help.textContent = (help.textContent.length < 20) ? `Please, ${help.textContent}` : "Please, Type your full age.";
+          }
+            
+        }
+      });
+    }
+  </script>
+
+
+</body>
+<script>
+
+  /*
+  // same as window.onclick. It receives two arguments, 1- is the event, 2- what to do when 1 happens
+  // window.addEventListener("click", () => console.log(`clicked at ${new Date()}`));
+
+  // let clicksCount = 0;
+  // window.onclick = () =>  {
+  //   clicksCount++;
+  //   console.log(`${clicksCount}- clicked at ${Date.now()/1000}`);
+  // }
+  */
+
+
+  /*
+  const bt1 = document.getElementById("bt1");
+  const bt2 = document.getElementById("bt2");
+
+  let c = 0;
+  test = () => {
+    c++;
+    console.log(c, "this is test");
+  };
+
+  removeEvent = () => {
+    console.log(`event got removed!`);
+    // bt1.removeEventListener("click", () => test()); // does not work, even though being registered with the same method caller
+    bt1.removeEventListener("click", test);
+
+  };
+
+  bt1.addEventListener("click", test);
+  bt2.addEventListener("click", removeEvent);
+  */
+
+  
+  /*
+  let button = document.querySelector("button");
+  button.addEventListener("mousedown", event => {
+    console.log(event.type);
+    event.preventDefault();
+  //button.addEventListener("click", event => { // click event considers only the left button click
+      if (event.button == 0) console.log("Left button");
+    else if (event.button == 1) console.log("Middle button");
+    else if (event.button == 2) {
+      event.preventDefault(); // it doesnt work to prevent context menu. Should use contextmenu 
+      console.log("Right button"); 
+    }
+  });
+
+  // it prevents context menu for all document, nut can be for only one element
+  document.addEventListener("contextmenu", event => event.preventDefault()); 
+  */
+ 
+  /*
+  document.addEventListener("mousedown", () => console.log("1- mousedown"));
+  document.addEventListener("mouseenter", ()=> console.log("2- mouseenter"));
+  document.addEventListener("mouseleave", ()=> console.log("3- mouseleave"));
+  document.addEventListener("mousemove", ()=> console.log("4- mousemove"));
+  document.addEventListener("mouseout", ()=> console.log("5- mouseout"));
+  document.addEventListener("mouseover", ()=> console.log("6- mouseover"));
+  document.addEventListener("mouseup", ()=> console.log("7- mouseup"));
+  document.addEventListener("click", ()=> console.log("8- click"));
+  */
+
+  // document.addEventListener("touchstart", () => console.log("starting touch"))
+
+  console.log("window")
+  console.log(window)
+  console.log("document")
+  console.log(document)
+
+  window.onload = () => {
+    document.querySelector("#name").focus();
+    console.log('page is fully loaded');
+  };
+
+  document.addEventListener('DOMContentLoaded', (event) => {
+    console.log("evetn")
+    console.log(event);
+    console.log(`DOMContentLoaded\n`);
+  });
+</script>
+</html>

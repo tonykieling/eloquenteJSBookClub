@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <title>Chapter 18th</title>
+</head>
+<body>
+  <h2>With Form</h2>
+  <form method="GET" action="example/message.html">
+    <p>Name: <input type="text" name="name"></p>
+    <p>Message:<br><textarea name="message"></textarea></p>
+    <!-- type="submit"  -->
+    <p>
+      <button 
+        onclick="test(event)"
+        id="bt1"
+        name="bt1"
+        >Send
+      </button>
+    </p>
+  </form>
+  <br><br>
+
+  <h2>Without Form</h2>
+  <p><input type="text" id="c" class="general-class" value="abc" autofocus> (text)</p>
+  <p><input type="password" class="general-class" value="abc" > (password)</p>
+  <p><input type="checkbox" class="general-class" checked> (checkbox)</p>
+  <p>
+    <input type="radio" class="general-class" value="A" name="choice">
+    <input type="radio" class="general-class" value="B" name="choice" checked>
+    <input type="radio" class="general-class" value="C" name="choice"> (radio)
+  </p>
+  <p><input type="file" class="general-class" id="file" multiple> (file)</p>
+  <textarea id="text-area" class="general-class" disabled>
+    one
+    two
+    three
+  </textarea>
+  <br>
+  <select class="general-class" multiple>
+    <option>Pancakes</option>
+    <option>Pudding</option>
+    <option>Ice cream</option>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+  </select>
+</body>
+<script>
+  // const bt1 = document.querySelector("#bt1");
+  // bt1.addEventListener("click", event => {
+  //   event.preventDefault();
+  //   console.log("bt1", event.target.name)
+  // });
+  // OR
+  const form = document.querySelector("form");
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+    console.log("form submit event");
+  });
+
+  const test = event => {
+    // event.preventDefault();
+    console.log("asdasd", event)
+  }
+  // // How to check all headers received from a site when doing a fetch - data request
+  // // note that because CORS, it will work only in the inspect inside from the site
+  // fetch("./18-book.html")
+  // // fetch("http://www.google.com")
+  // // fetch("https://registro.br")
+  //   // .then(t => t.text())
+  //   // .then(t => console.log("TtTtTt", t))
+  //   .then(r => r.headers.forEach((value, name) => {
+  //     console.log(name + ": " + value);
+  //   }));
+
+  // handling input change events. - the 3 lines below work fine
+  // const testActionOnGeneralClass = Array.from(document.getElementsByClassName("general-class"));
+  // const testActionOnGeneralClass = Array.from(document.querySelectorAll(".general-class"));
+  // const testActionOnGeneralClass = document.querySelectorAll(".general-class");
+  // testActionOnGeneralClass.forEach(element => {
+  //   element.addEventListener("input", event => console.log("CHange!!", event.target));
+  // });
+
+  // testActionOnGeneralClass.forEach(element => {
+  //   element.addEventListener("focus", event => {
+  //     console.log(`${element.type} got FOCUS`);
+  //   });
+  // });
+
+  // testActionOnGeneralClass.forEach(element => {
+  //   element.addEventListener("blur", () => console.log(`  ${element.type} got blur`));
+  // });
+
+
+  // dealing with files
+  function readFileText(file) {
+    return new Promise((resolve, reject) => {
+      let reader = new FileReader();
+      reader.addEventListener("load", () => {
+        console.log("LOADING file");
+        resolve(reader.result)
+      });
+      reader.addEventListener("error", () => reject(reader.error));
+      console.log("before calling reader file");
+      reader.readAsText(file);
+    });
+  }
+
+  const fileInput = document.querySelector("#file");
+  fileInput.addEventListener("change", async() => {
+    console.log(`${fileInput.files.length} file${(fileInput.files.length > 1) ? "s" : ""} selected.`);
+    if (fileInput.files.length > 1) {
+      const files = Array.from(fileInput.files);
+      files.forEach((f, i) => console.log(`${i}- ${f.name} type: ${f.type} size: ${f.size}`));
+    } else {
+      console.log(`${fileInput.files[0].name} type: ${fileInput.files[0].type} size: ${fileInput.size}`);
+      console.log("------------------------------------------------------");
+      const file = fileInput.files[0];
+      console.log((file.type.slice(0, 4) === "text" ? "--- It's a TEXT file" : "--- NOT a Text file"));
+      // const fileContent = await readFileText(file);
+      // console.log(fileContent);
+      console.log(file)
+      readFileText(file)
+        .then(console.log);
+    }
+  });
+  
+</script>
+</html>

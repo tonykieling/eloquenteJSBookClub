@@ -1,0 +1,149 @@
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Hi</h1>
+  <div id="hey" style="height: 600px;">hey</div>
+  <p style="border: 3px solid red">
+    I'm boxed in
+    </p>
+</body>
+<script>
+  console.log(window.visualViewport)
+  let para = document.body.getElementsByTagName("p")[0];
+  console.log(para.visualViewport) // undefined
+  console.log("clientHeight:", para.clientHeight);
+  console.log("offsetHeight:", para.offsetHeight);
+  console.log("pageOffSet: " + para.pageXOffset, para.pageYOffset); // it's undefined
+  console.log(document.getElementById("hey").getBoundingClientRect());
+  window.onscroll = () => console.log(pageXOffset, pageYOffset);
+</script>
+</html> 
+-->
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p><span id="one"></span></p>
+  <p><span id="two"></span></p>
+</body>
+<script>
+  function time(name, action) {
+    let start = Date.now(); // Current time in milliseconds
+    action();
+    console.log(name, "took", Date.now() - start, "ms");
+  }
+
+  time("naive", () => {
+    let target = document.getElementById("one");
+    // while (target.offsetWidth < 2000) {
+    //   target.appendChild(document.createTextNode("X"));
+    // }
+    target.appendChild(document.createTextNode("X".repeat(2000))); // this way tooks 1 ms
+  });
+  // → naive took 32 ms
+  
+  time("clever", function() {
+    let target = document.getElementById("two");
+    // target.appendChild(document.createTextNode("XXXXX"));
+    // let total = Math.ceil(2000 / (target.offsetWidth / 5));
+    target.appendChild(document.createTextNode("X"));
+    let total = 2000;
+    target.firstChild.nodeValue = "X".repeat(total);
+  });
+  // → clever took 0 ms
+</script>
+</html>
+-->
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+  <body>
+  <p id="fp">And if you go chasing <span class="animal">rabbits</span></p>
+  <p>And you know you're going to fall</p>
+  <p>Tell 'em a <span class="character">hookah smoking<span class="animal">caterpillar</span></span></p>
+  <p>Has given you the call</p>
+  <button onclick=deleteP()>Delete first p</button>
+</body>
+
+<script>
+  count = selector => document.querySelectorAll(selector).length;
+
+  deleteP = () => {
+    // const e = document.getElementById("fp");
+    // console.log("e: " + e);
+    document.getElementById("fp").remove();
+    checkAllElements();
+  }
+
+  window.onload = () => checkAllElements(true);
+  
+  checkAllElements = (param = null) => {
+    param ? console.log("onLoad") : console.log("new checking")
+    console.log(count("p")); // All <p> elements // → 4
+    console.log(count(".animal")); // Class animal  // → 2
+    console.log(count("p .animal")); // Animal inside of <p>  // → 2
+    console.log(count("p > .animal")); // Direct child of <p>  // → 1
+  };
+        
+  // window.onload(function(){checkAllElements()});
+  // document.addEventListener("load", () => {
+</script>
+</html>
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p style="text-align: center">
+    <img id="mimg" src="14-viewport.png" style="position: relative">
+  </p>
+</body>
+
+<script>
+  let img = document.querySelector("img");
+  // let img = document.getElementById("mimg");
+  // https://www.techiedelight.com/change-size-of-image-with-javascript/
+  // img.style.width = "10%"
+  img.width = 40
+  console.log(img.getBoundingClientRect())
+  console.log(img.width)
+  let angle = Math.PI / 2;
+
+  function animate(time, lastTime) {
+    // console.log(time, lastTime) //?????
+    if (lastTime != null) {
+      angle += (time - lastTime) * 0.001;
+    }
+    img.style.top = (Math.sin(angle) * 20) + "px";
+    img.style.left = (Math.cos(angle) * 200) + "px";
+    // console.log(newTime) //?????
+    // requestAnimationFrame(newTime => animate(newTime, time));
+  }
+
+  requestAnimationFrame(animate);
+</script>  
+</html>

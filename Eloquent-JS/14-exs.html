@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="table-output">
+    <div>ola</div>
+  </div>
+  <button onclick="addTable()">Add Table</button>
+  <div id="search-output"></div>
+  <div>
+    <button onclick="myGetElementByTagName(document.body, 'div')">Search element</button>
+    <div id="get-output" style="display: none;">
+
+    </div>
+  </div>
+</body>
+
+<script>
+
+  myGetElementByTagName = (node, t) => {
+    let result = [];
+    const tagToFind = t.toUpperCase();
+
+    function explore(e) {
+        for (let count = 0; count < e.childNodes.length; count++) {
+          let child = e.childNodes[count];
+          if (child.nodeType == document.ELEMENT_NODE) {
+            if (child.nodeName == tagToFind) result.push(child);
+            explore(child);
+          }
+        }
+      }
+
+    explore(node);
+    
+    let k = document.getElementById("get-output")
+    k.style.display = "block";
+    if (result.length) {
+      console.log(result)
+      k.innerHTML = "check console"
+    } else {
+      console.log("no data :/");
+      k.innerHTML = "no data :/"
+    } 
+  };
+
+  const data = [
+    {
+      name  : "Kilimanjaro",
+      height: 5895,
+      place : "Tanzania"
+    },
+    {
+      name  : "Mountain1",
+      height: 1000,
+      place : "Canada"
+    },
+    {
+      name  : "Mountain2",
+      height: 2000,
+      place : "Canada"
+    }
+  ];
+
+  addTable = () => {
+    let table = document.createElement("table");
+    let addHeader = document.createElement("tr");
+    
+    const hName     = document.createElement("th");
+    hName.innerHTML = "Name"
+    // const name = document.createTextNode("Name");
+    // hName.appendChild(name);
+    
+    const hHeight     = document.createElement("th");
+    hHeight.innerHTML = "Height";
+
+    const hPlace      = document.createElement("th");
+    hPlace.innerHTML  = "Place";
+
+    addHeader.appendChild(hName);
+    addHeader.appendChild(hHeight);
+    addHeader.appendChild(hPlace);
+    table.appendChild(addHeader);
+
+    data.forEach(e => {
+      const newRow = document.createElement("tr");
+      
+      const name = document.createElement("td");
+      name.innerHTML = e.name;
+      newRow.appendChild(name);
+
+      const height = document.createElement("td");
+      height.innerHTML = e.height;
+      height.style.textAlign = "right";
+      newRow.appendChild(height);
+
+      const place = document.createElement("td");
+      place.innerHTML = e.place;
+      newRow.appendChild(place);
+
+      table.appendChild(newRow);
+    });
+
+    table.id = "mountains"
+    table.style.border = "solid 1px red";
+    let output = document.getElementById("table-output");
+    output.appendChild(table);
+  }
+</script>
+</html>

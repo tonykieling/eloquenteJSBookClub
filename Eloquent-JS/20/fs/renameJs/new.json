@@ -1,0 +1,12 @@
+{
+  "person": {
+    "name"    : "This is name field",
+    "address" : "Address field"
+  },
+
+  "company": {
+    "name"  : "Company's name",
+    "city"  : "Company's city"
+  }
+
+}

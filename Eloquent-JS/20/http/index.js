@@ -4,13 +4,12 @@
 const { createServer } = require("http");
 const PORT = 8007;
 const server = createServer((req, resp) => {
-  console.log("REQ", req.headers); // too much data
   resp.writeHead(200, {"Content-Type": "text/html"});
   resp.write(`
-  <html>
-    <h1>Hey there</h1>
-    <p>Your asked for <code>${req.url}</code></p>
-  </html>
+    <html>
+      <h1>Hey there</h1>
+      <p>Your asked for <code>${req.url}</code></p>
+    </html>
   `);
   resp.end();
 });

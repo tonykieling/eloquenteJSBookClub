@@ -54,3 +54,18 @@
 // };
 
 // tahoe.print(); // Uncaught TypeError: Cannot
+
+
+/**
+ * COMPILATION
+ */
+// Babel makes JavaScript similar to other languages.
+//    The resulting JavaScript is more widely supported.
+// The process of JavaScript compilation is typically automated by a build tool like webpack or Parcel.
+
+
+/**
+ * DESTRUCTURING
+ */
+
+ 

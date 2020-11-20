@@ -150,6 +150,41 @@
 
 
 /**
- * Asynchronous JavaScript
+ * ASYNCHRONOUS JavaScript
  */
 // see directory 2
+
+
+/**
+ * Classes, directory 2
+ */
+
+
+ /**
+  * ES6 Modules: This import and export syntax is not yet fully supported by all browsers or by Node. 
+  * However, like any emerging JavaScript syntax, it’s supported by Babel. 
+  * This means you can use these statements in your source code and Babel will know where to find the modules you want to include in *your compiled JavaScript.
+  * *** REACT is okay to use them
+  */
+
+// // file myExports.js
+// export const print=(message) => console.log(message, new Date())
+// export const log=(message, timestamp) => console.log(`${timestamp.toString()}: ${message}`);
+// // or expor default ... when only one item (function, binder, etc) to be exported in a file
+
+// // file myimports.js
+// import { print, log } from "./text-helpers";
+// print("printing a message");
+// // import * as all from "./file.js" // => it is used to import all exports from 'file.js'
+
+
+// CommonJs - used as default by Node
+// see directory 2/commonjs1.js and commonjs2.js
+
+
+/**
+ * In functional JavaScript, we can think of our code as being a collection of functions that can be composed into applications.
+ */
+
+
+ 

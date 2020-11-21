@@ -158,6 +158,10 @@
 /**
  * Classes, directory 2
  */
+/**
+ * https://zellwk.com/blog/javascript-prototype/?ck_subscriber_id=477292420
+ * very interessing article about JS prototype and Classes
+ */
 
 
  /**
@@ -187,4 +191,3 @@
  */
 
 
- 

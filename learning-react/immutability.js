@@ -70,3 +70,19 @@ primitive types are immutable whereas non-primitives are mutable.
     google, and the article, says:
     “a variable defined outside a function can be accessible inside another function defined after the variable declaration. But the opposite is not true, the variables defined inside a function will not be accessible outside that function.”
  */
+
+/**
+ JavaScript Array Methods: Mutating vs. Non-Mutating
+ https://lorenstewart.me/2017/01/22/javascript-array-methods-mutating-vs-non-mutating/
+
+ About arryas, JS has 2 types of methods: mutating and non-mutating.
+ The article above talks about that.
+ 
+ - ex1. '.push' is mutating
+  it is gonna work in both let and const variables
+ - ex2. '= [...arr1, 2]' is not mutating
+  it only works on let variables
+  Why? I do not know for sure..
+
+*/
+

@@ -65,14 +65,14 @@
   * Functional Concepts
   * 
   * core concepts of functional programming:
-  *   - immutability, 
-  *   - purity, 
-  *   - data transformation, 
-  *   - higher-order functions, and 
-  *   - recursion
+  *   - 1/5 immutability, 
+  *   - 2/5 purity, 
+  *   - 3/5 data transformation, 
+  *   - 4/5 higher-order functions, and 
+  *   - 5/5 recursion
   */
  
-// Immutability
+// Immutability (1/5)
 // // copy objects - shallow and deep ways
 // //* https://www.javascripttutorial.net/object/3-ways-to-copy-objects-in-javascript/
 // let color = {
@@ -111,3 +111,16 @@
 // ar = [...ar, 33];
 // console.log("3-ar", ar);
 
+
+// Pure Functions (2/5)
+const testingPF = obj => {
+  console.log("inside testing Pure Function");
+  obj = {};
+  return obj;
+}
+
+let sendObj = { a: 1, b: "b"};
+console.log("sendObj", sendObj);
+const newObj = testingPF(sendObj);
+sendObj = {...sendObj, ...newObj};
+console.log("sendObj", sendObj);

@@ -78,21 +78,53 @@ function execution context creation:
 // 1- a function that returns other function
 // 2- the inner function returned creates a closure
 //  AND it keeps the first variable for all the time it gets invoked
-// It means, a function will keep a value and an operation, method or action.
+// It means, a function will keep a value and its operation/action.
 
 // Whenever there is a function inside of another function (which is returned by the first one),
 // even if the parents function's execution context is removed from the stack, 
 // the inner function will still remain access to the variable environment of the 
 // parent function's execution context. 
 // 
-function addition(first){
-  return function(second){
-    return first + second;
-  }
-}
+// function addition(first){
+//   return function(second){
+//     return first + second;
+//   }
+// }
 
-let addition3 = addition(3);
-console.log(addition3(4));
-let number = 1;
-number += addition3(5);
-console.log(number);
+// // closure by arrow function
+// const addition = first => second => first + second;
+
+// let addition3 = addition(3);
+// console.log(addition3(4));
+// let number = 1;
+// number += addition3(5);
+// console.log(number);
+
+
+// more complex example from the video in the beggining
+var counter = (function() {
+  var privateCounter = 0;
+  const print = console.log;
+  function changeBy(val) {
+    privateCounter += val;
+  }
+  return {
+    increment: function() {
+      changeBy(1);
+    },
+    decrement: function() {
+      changeBy(-1);
+    },
+    value: function() {
+      // return privateCounter;
+      print(privateCounter);
+    }
+  };
+})();
+
+counter.value();
+counter.increment();
+counter.increment();
+counter.value();
+counter.decrement();
+counter.value();

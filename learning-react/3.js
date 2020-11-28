@@ -113,6 +113,10 @@
 
 
 // Pure Functions (2/5)
+/*
+A pure function is a function that returns a value that’s computed based on its arguments. Pure functions take at least one argument and always return a value or another function. They do not cause side effects, set global variables, or change anything about application state. They treat their arguments as immutable data.
+*/
+// More examples on 3/pure-functipn.js file
 const testingPF = obj => {
   console.log("inside testing Pure Function");
   obj = {};
@@ -124,3 +128,17 @@ console.log("sendObj", sendObj);
 const newObj = testingPF(sendObj);
 sendObj = {...sendObj, ...newObj};
 console.log("sendObj", sendObj);
+
+/**
+ * When writing functions in React, one needs to try the following rules:
+      1- The function should take in at least one argument.
+      2- The function should return a value or another function.
+      3- The function should not change or mutate any of its arguments
+ */
+
+
+// Data Transformations (3/5)
+/**
+ * It is when the computed data by pure functions are put in place, changing the "world"
+ */
+// more info on 3/data-transformation.js

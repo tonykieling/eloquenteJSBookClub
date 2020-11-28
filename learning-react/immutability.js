@@ -83,6 +83,11 @@ primitive types are immutable whereas non-primitives are mutable.
  - ex2. '= [...arr1, 2]' is not mutating
   it only works on let variables
   Why? I do not know for sure..
+    Now I know: because spread operator, in the above case, is an immutable function.
+    It means it is possible to simple do [...arr1, 2], but it does not change the array.
+    In order to change arr1 one has to do arr1 = [...arr1, 2] (for example)
+    But, if arr1 is const, it wont work.
+    Well, still, push mutates an const array. Language rules..
 
 */
 

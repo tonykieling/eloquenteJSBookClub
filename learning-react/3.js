@@ -139,6 +139,6 @@ console.log("sendObj", sendObj);
 
 // Data Transformations (3/5)
 /**
- * It is when the computed data by pure functions are put in place, changing the "world"
+ * It is when the computed data by pure functions are put in place, changing the "world".
  */
 // more info on 3/data-transformation.js

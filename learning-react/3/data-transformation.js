@@ -55,28 +55,41 @@
 // console.log(newArr);
 
 
-const ages = [21, 18, 42, 40, 64, 63, 34];
+// const ages = [21, 18, 42, 40, 64, 63, 34];
+// // const maxAge = ages.reduce((max, age) => {
+// //   console.log(`${age} > ${max} = ${age > max}`);
+// //   if (age > max) {
+// //     return age;
+// //   } else {
+// //     return max;
+// //   }
+// // }, 0);
+// const maxAge = ages.reduce((max, age) => ((max > age) ? max : age), 0); // it does the same as above
 
-// const maxAge = ages.reduce((max, age) => {
-//   console.log(`${age} > ${max} = ${age > max}`);
-//   if (age > max) {
-//     return age;
-//   } else {
-//     return max;
-//   }
-// }, 0);
-const maxAge = ages.reduce((max, age) => ((max > age) ? max : age), 0); // it does the same as above
+// // // how reduce works: previous can be the accumulator if there is some action on it
+// // //  here, previous is gonna happen because the function ends returning the current (it will be previous in the next round)
+// // TAKE AWAY from this is:
+// // reduces receives two arguments: a callback and a initial value
+// // const maxAge = ages.reduce(
+// //  (previous, current) => { // this is the callback
+// //     console.log("accumulator", previous, "current", current);
+// //     return current;
+// //   }, 
+// //   0  // initial value
+// // );
 
-// // how reduce works: previous can be the accumulator if there is some action on it
-// //  here, previous is gonna happen because the function ends returning the current (it will be previous in the next round)
-// TAKE AWAY from this is:
-// reduces receives two arguments: a callback and a initial value
-// const maxAge = ages.reduce(
-//  (previous, current) => { // this is the callback
-//     console.log("accumulator", previous, "current", current);
-//     return current;
-//   }, 
-//   0  // initial value
+// console.log("maxAge", maxAge);
+
+
+// //more about REDUCE
+// const t = [1, 2, 3].reduce( // same as for reduceRight
+//   //1- callback function
+//   (accumulator, current) => {
+//     console.log("accumulator", accumulator, "current", current);
+//     return current + accumulator;
+//   },
+//   //2- initial value to the accumulator
+//   0
 // );
-
-console.log("maxAge", maxAge);
+const t = [1, 2, 3].reduceRight((acc, cur) => acc + cur, 0);
+console.log("reduce's result = ", t);

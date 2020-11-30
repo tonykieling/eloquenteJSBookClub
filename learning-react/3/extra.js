@@ -21,3 +21,11 @@
 //   console.log([...Array(10000000).keys()].reduce((a, b) => Math.pow(b, 2)));
 //   console.timeEnd("a");
 // }
+
+const obj = { bs: 12 };
+function w() {
+  const { bs } = obj;
+  console.log("ah...........", bs);
+  // const obj = "something here";
+}
+w();

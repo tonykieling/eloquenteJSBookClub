@@ -116,18 +116,18 @@
 /*
 A pure function is a function that returns a value that’s computed based on its arguments. Pure functions take at least one argument and always return a value or another function. They do not cause side effects, set global variables, or change anything about application state. They treat their arguments as immutable data.
 */
-// More examples on 3/pure-functipn.js file
-const testingPF = obj => {
-  console.log("inside testing Pure Function");
-  obj = {};
-  return obj;
-}
+// // More examples on 3/pure-functipn.js file
+// const testingPF = obj => {
+//   console.log("inside testing Pure Function");
+//   obj = {};
+//   return obj;
+// }
 
-let sendObj = { a: 1, b: "b"};
-console.log("sendObj", sendObj);
-const newObj = testingPF(sendObj);
-sendObj = {...sendObj, ...newObj};
-console.log("sendObj", sendObj);
+// let sendObj = { a: 1, b: "b"};
+// console.log("sendObj", sendObj);
+// const newObj = testingPF(sendObj);
+// sendObj = {...sendObj, ...newObj};
+// console.log("sendObj", sendObj);
 
 /**
  * When writing functions in React, one needs to try the following rules:
@@ -142,3 +142,26 @@ console.log("sendObj", sendObj);
  * It is when the computed data by pure functions are put in place, changing the "world".
  */
 // more info on 3/data-transformation.js
+
+
+// Higher-order functions (4/5) 
+/**
+ * They are functions that can manipulate other functions.
+ * They can take functions in as arguments or return functions or both.
+ */
+/**
+ * Currying
+ * The technique of transforming a function that takes multiple arguments into a function that takes a single argument (the first of the arguments to the original function) and returns a new function that takes the remainder of the arguments and returns the result.
+ */
+// more on high-order-function.js
+
+
+// RECURSION (5/5)
+/**
+ * Recursion is a technique that involves creating functions that recall themselves.
+ * Often, when faced with a challenge that involves a loop, a recursive function can be used instead
+ */
+// an advantage of recursion is that one dont need to specify a number. 
+// Instead, the programmer can use recursion, calling until the expected answer gets back (one possible scenario).
+//    When to stop? Let's say until the return is equal to something like undefined.
+// more on recursion.js

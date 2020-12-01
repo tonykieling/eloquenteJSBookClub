@@ -22,10 +22,17 @@
 //   console.timeEnd("a");
 // }
 
+
 const obj = { bs: 12 };
 function w() {
   const { bs } = obj;
   console.log("ah...........", bs);
-  // const obj = "something here";
+  const obj = "something here";
 }
 w();
+// GOTCHA:
+// first, in the creation stage, the program list all binders.
+// in the w function context, it declares all variables: bs and obj, initializing each as undefined, 
+//  even though there is the same binder one level above (obj).
+// That means, in the first stage, it does not assign any value for the binder.
+// Because that, it will get an error

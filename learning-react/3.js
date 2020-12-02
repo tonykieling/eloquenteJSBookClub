@@ -165,3 +165,16 @@ A pure function is a function that returns a value that’s computed based on it
 // Instead, the programmer can use recursion, calling until the expected answer gets back (one possible scenario).
 //    When to stop? Let's say until the return is equal to something like undefined.
 // more on recursion.js
+
+
+// COMPOSITION
+// it is a resource from functional programming that, instead of having the methods linked to a class (OOP), there are methods that can be added to a class or object, composing that object with only the necessary method for that.
+//  Pure functions are the building blocks of function composition.
+
+/**
+ * quotation of John Armstrong, creator of Erlang, 
+ * that helps to understand the relation and diff about FP X OOP and Composition vs Inheritance:
+ * 
+ * "The problem with object-oriented languages is they've got all this implict environment that they carry around with them.
+ * You wanted a banana but what you got was a gorilla holding the bana and the entire jungle."
+ */

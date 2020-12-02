@@ -23,16 +23,21 @@
 // }
 
 
-const obj = { bs: 12 };
-function w() {
-  const { bs } = obj;
-  console.log("ah...........", bs);
-  const obj = "something here";
-}
-w();
-// GOTCHA:
-// first, in the creation stage, the program list all binders.
-// in the w function context, it declares all variables: bs and obj, initializing each as undefined, 
-//  even though there is the same binder one level above (obj).
-// That means, in the first stage, it does not assign any value for the binder.
-// Because that, it will get an error
+const v = "something to be checked."
+const v1 = v.split(" ");
+console.log(v1[v1.length - 1])
+console.log(v.slice(1));
+
+// const obj = { bs: 12 };
+// function w() {
+//   const { bs } = obj;
+//   console.log("ah...........", bs);
+//   const obj = "something here";
+// }
+// w();
+// // GOTCHA:
+// // first, in the creation step, the program list all binders.
+// // in the w function context, it declares all variables: bs and obj, initializing each as undefined, 
+// //  even though there is the same binder one level above (obj).
+// // That means, in the first stage, it does not assign any value for the binder.
+// // Because that, it will get an error

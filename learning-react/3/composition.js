@@ -1,12 +1,23 @@
-// simple but very specific and hard to scale
-const template = "hh:mm:ss tt";
-const clockTime = template
-  .replace("hh", "03")
-  .replace("mm", "33")
-  .replace("ss", "33")
-  .replace("tt", "PM");
+// // simple but very specific and hard to scale
+// const template = "hh:mm:ss tt";
+// const clockTime = template
+//   .replace("hh", "03")
+//   .replace("mm", "33")
+//   .replace("ss", "33")
+//   .replace("tt", "PM");
+// console.log(clockTime);
 
-console.log(clockTime);
+const currentTime = new Date();
+console.log("currentTime", currentTime);
+
+const myGetHour = ct => ct.getHours();
+const myGetMinute = ct => ct.getMinutes();
+
+const composeTime = currentTime => `${myGetHour(currentTime)}:${myGetMinute(currentTime)}`;
+
+const showOnlyLocalTime = composeTime(currentTime);
+console.log("showOnlyLocalTime", showOnlyLocalTime);
+
 
 
 

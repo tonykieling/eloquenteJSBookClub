@@ -64,7 +64,10 @@ console.log(doThings([
   10
   ])
 );
-// This piece of code declares a function to a binder called doThings. In order to run that function, one needs to invoke it by doThings('parameters'), for instance.
-// About the function: when the argument passed to it is an array or a String, it will loop through all its items and add them individually into a new array, which is a property of an object called arrayOfStuff (declared in the second line).
-// After that, it will return only the array part of that object (second line).
-// Right now, if in case of only calling the function whithout parameters will throw an error because the argument would not have the property 'length'. A possible way to solve it would be checking if 'stuff' variable is valid and handle the answer accordingly with the system requirements.
+// This piece of code declares a function to a binder called doThings. In order to run that function, one needs to invoke it by `doThings('parameters')`, for instance.
+// About the function: when the argument passed to it is an Array or a String, it will loop through all its items and add them individually into a new array, which is a property called arrayOfStuff of an object called result - declared in the second line.
+// After that, it will return only the array part (arrayOfStuff) of that object (result).
+// Right now, in case of only calling the function whithout parameters will throw an error because the argument would not have the property 'length'. A possible way to solve it would be checking if 'stuff' variable is valid and handle this answer accordingly with the system requirements.
+// Another thing to point in this code is that the loop works as a "Big O notation", which means that it will run the loop for every item and it will scale proportionally to the size of the stuff length.
+linear relation O(n)
+linear time complexity

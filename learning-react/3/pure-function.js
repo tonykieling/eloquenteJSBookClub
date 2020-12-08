@@ -44,7 +44,8 @@ const f1 = (a, b, c) => {
   c = 0;
   console.log(a, b, c);
 }
-// const f1 = (x, y, z) => { // it does not matters for the thing about reference X value - as far as I can see
+// const f1 = (x, y, z) => { // it does not matters for the thing about 'reference X value' - as far as I can see
+                             // whether it is a arrow function or not
 // // function f1(x, y, z) {
 //   console.log("1- receiving: ", x, y, z);
 //   x++;

@@ -36,27 +36,36 @@
 let a = "10";
 let b = [9, 78];
 let c = { a: 1, b:2 };
-const f1 = (a, b, c) => {
-  console.log(a, b, c);
-  a = 0;
-  // b = [...b, 6]; // when using a "=", it creates a new local variable
-  b.push(7);
-  c = 0;
-  console.log(a, b, c);
-}
-// const f1 = (x, y, z) => { // it does not matters for the thing about 'reference X value' - as far as I can see
-                             // whether it is a arrow function or not
-// // function f1(x, y, z) {
-//   console.log("1- receiving: ", x, y, z);
-//   x++;
-//   y.push("something");
-//   // y = [...y, "something"]; // there is a huge diff when using spread operator
-//   // because it will create a new local variable and work as value not reference
-//   z = {...z, c: "c"};
-//   console.log("1- changes: ", x, y, z);
+// const f1 = (a, b, c) => {
+//   console.log(a, b, c);
+//   a = 0;
+//   // b = [...b, 6]; // when using a "=", it creates a new local variable
+//   b.push(7);
+//   c = 0;
+//   console.log(a, b, c);
 // }
+const f1 = (x, y, z) => { // it does not matters for the thing about 'reference X value' - as far as I can see
+                            //  whether it is a arrow function or not
+// function f1(x, y, z) {
+  console.log("1- receiving: ", x, y, z);
+  x++;
+  // y.push("something");
+  y = [...b];
+  // y = [];
+  // y = [...y, "something"]; // there is a huge diff when using spread operator
+  // because it will create a new local variable and work as value not reference
+  z = {...z, c: "c"};
+  console.log("1- changes: ", x, y, z);
+}
 f1(a, b, c);
 console.log("2-", a, b, c);
+
+
+nestedNumbers = [[1], [2]];
+numbersCopy = [...nestedNumbers];
+
+numbersCopy[0].push(300);
+console.log(nestedNumbers, numbersCopy);
 
 
 // https://stackoverflow.com/questions/6605640/javascript-by-reference-vs-by-value

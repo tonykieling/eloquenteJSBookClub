@@ -44,16 +44,42 @@
 // console.log(person("Brad", "Janson"));
 
 
+// const x = function(thix, delay = 500) {
+//   // print: function(delay = 500) {  // function DECLARATION
+//   setTimeout(() => { // this function will access 'this' from the upper print function, which is mountains
+//     console.log(thix.mountains.join(", "));
+//   }, delay);
+// };
+
 // const tahoe = {
 //   mountains: ["Freel", "Rose", "Tallac", "Rubicon", "Silver"],
-//   print: function(delay = 500) {
+//   // print: (delay = 500) => { // ARROW function
+//   // *** DANGEROUS: the use of arrow function in here will affect the this object and the result will be different
+//   // in this case, it will give a fresh this object,
+//   // while function declaration or function expression gives the this object from the upper caller
+//   // *** function EXPRESSION does NOT make sense in here or does NOT apply
+
+//   // it works, but
+//   // print: function(delay = 500) {  // function DECLARATION
+//   //   setTimeout(() => { // this function will access 'this' from the upper print function, which is mountains
+//   //     console.log(this.mountains.join(", "));
+//   //   }, delay);
+//   // }
+
+//   // this is a shorter way to do the same thing
+//   print(delay = 500) {
 //     setTimeout(() => { // this function will access 'this' from the upper print function, which is mountains
 //       console.log(this.mountains.join(", "));
 //     }, delay);
 //   }
+//   // const print = function() { // it does NOT work
+//   //   console.log("asd");
+//   //   return 1;
+//   // }
 // };
 
 // tahoe.print(); // Uncaught TypeError: Cannot
+// // tahoe.print.x(); // Uncaught TypeError: Cannot
 
 
 /**
@@ -121,6 +147,7 @@
 // it performs several different tasks. 
 // 1- allows us to combine the contents of diff, making a specific array that combines the others one:
 // const arr1 = [1, 2, 3];
+// console.log(...arr1.join(" -").split());
 // const arr2 = ["a", "b", "c"];
 // const arr3 = [[1, "a"], ["b", 3, 78]];
 // const allArraysPlus = [...arr1, ...arr2, ...arr3, "Plus"];
@@ -153,6 +180,29 @@
  * ASYNCHRONOUS JavaScript
  */
 // see directory 2
+// https://www.youtube.com/watch?v=8aGhZQkoFbQ
+// Call Stack / WebAPIs / Task (Callback) Queue
+//Sync
+// [1, 2, 3, 4].forEach((a, b, c) => console.log(a));
+
+//Async
+// [1, 2, 3, 4].forEach(e => {
+//   setTimeout(console.log(e), 0);
+// })
+// // print = v => console.log(v);
+function asyncForEach(arr, cb) {
+  console.log("arr", arr);
+  console.log("cb", cb.toString());
+  arr.forEach(function () {
+    setTimeout(cb, 0);
+  })
+}
+
+asyncForEach([1, 2, 3, 4], function (v) {
+  // console.log("vvvvvvvvvv:", v);
+  console.log(v);
+});
+
 
 
 /**

@@ -59,6 +59,25 @@ primitive types are immutable whereas non-primitives are mutable.
 // console.log("x", ++x);
 
 
+// ********************************
+// https://css-tricks.com/understanding-immutability-in-javascript/
+// when a new object is assigned to another one, it is made by reference
+// this means that any changes, still in as object format, it will reflect in the other one (both directions)
+let obj1 = {a: 1, b:2};
+let obj2 = obj1;
+console.log("obj1", obj1, "obj2", obj2);
+obj2.b = "b";
+obj1.c = 3;
+// obj1 = "no more an object";
+// obj2 = "no more an object";
+console.log("obj1", obj1, "obj2", obj2);
+// In React, for instance, the reconciliation process (https://css-tricks.com/how-react-reconciliation-works/) will check the changes before it takes place.
+// As far as I understood, 
+// 1- it will receive an element, its previous state and the current one.
+// 2- check both states to make sure whether it needs to update the state
+// 3- if so, it does that
+
+
 /**
  * Scope in Javascript
   - Global

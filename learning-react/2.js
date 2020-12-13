@@ -186,23 +186,37 @@
 // [1, 2, 3, 4].forEach((a, b, c) => console.log(a));
 
 //Async
-// [1, 2, 3, 4].forEach(e => {
-//   setTimeout(console.log(e), 0);
-// })
+// [1, 2, 3, 4].forEach(e => (() => setTimeout(console.log(e), 330))())
 // // print = v => console.log(v);
-function asyncForEach(arr, cb) {
-  console.log("arr", arr);
-  console.log("cb", cb.toString());
-  arr.forEach(function () {
-    setTimeout(cb, 0);
-  })
-}
 
-asyncForEach([1, 2, 3, 4], function (v) {
-  // console.log("vvvvvvvvvv:", v);
-  console.log(v);
-});
+// function asyncForEach(arr, cb) {
+//   console.log("arr:", arr);
+//   // console.log("cb:", cb.toString());
+//   return arr.forEach(e => {
+//     console.log("eee:::", e);
+//     // setTimeout(cb(e), 0); // it is okay
+//     return setTimeout(() => cb(e), 500);
+//   });
+// }
 
+// const asyncForEach = (arr, cb) => arr.forEach(e => setTimeout(() => cb(e), 500));
+// asyncForEach([1, 2, 3, 4], v => console.log(v));
+
+const asyncForEach = (arr, cb) => arr.forEach(e => cb(e));
+asyncForEach([1, 2, 3, 4], v => setTimeout(() => {
+  console.log("v::", v);
+}, 500))
+
+// // example for the video does not work properly.. Maybe it is a diff btw the js versnio - the video if from 6 years later
+// function asyncForEach(array, cb) {
+//   array.forEach(function () {
+//     setTimeout(cb, 0);
+//   })
+// }
+
+// asyncForEach([1, 2, 3, 4], function(i) {
+//   console.log(i);
+// })
 
 
 /**

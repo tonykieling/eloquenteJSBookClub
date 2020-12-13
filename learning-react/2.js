@@ -202,10 +202,37 @@
 // const asyncForEach = (arr, cb) => arr.forEach(e => setTimeout(() => cb(e), 500));
 // asyncForEach([1, 2, 3, 4], v => console.log(v));
 
-const asyncForEach = (arr, cb) => arr.forEach(e => cb(e));
-asyncForEach([1, 2, 3, 4], v => setTimeout(() => {
-  console.log("v::", v);
-}, 500))
+// const asyncForEach = (arr, cb) => arr.forEach(e => cb(e));
+
+
+// // it simulates an asynchoronous function
+// // it will run the 2 lines after and as many as setTimeouts for the array elements SYNCHRONOUSLY - pratically at one time
+// // each setTimeout will individually run 
+// // it is possible to run with promise, but it will be the same result (as far as i can see now)
+// function wait(ms) {
+//   console.log("inside wait:", ms);
+//   console.time(ms);
+//   return setTimeout(() => new Promise(resolve => {
+//   // return setTimeout(() => {
+//     console.log("inside timeout: ", ms);
+//     console.timeEnd(ms);
+//     resolve();
+//   }), ms);
+// }
+
+// short version of the above
+const wait = ms => setTimeout(() => setTimeout(() => console.log("inside timeout after: ", ms), ms));
+
+// this is the caller function of the wait method
+[10, 15, 30, 35].forEach(e =>  wait(e * 200));
+  
+// asyncForEach([1, 2, 3, 4], v => setTimeout(() => {
+//   console.log("v::", v);
+//   return new Promise(result => {
+//     console.log("promise is done");
+//     result();
+//   });
+// }, 500));
 
 // // example for the video does not work properly.. Maybe it is a diff btw the js versnio - the video if from 6 years later
 // function asyncForEach(array, cb) {

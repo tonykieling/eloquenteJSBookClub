@@ -1,0 +1,32 @@
+Chapter 2 "Javascript for React" Part I - Jan 5th 7pm
+-----
+Q1. What is the difference between function declaration and function expression?
+ Function Declaration is hosted and it's possible to call it from anywhere in the program (before or after its declaration).
+ Function Expression is NOT hosted and the function will be "stored" in a binder.
+
+Q2. What does destructuring an object mean? How does it work when passing an object as a function argument? And how can you destructure an object nested in another object?
+ Destructuring allows to extract one variable from an object which contains that variable as its property.
+ For instance, when passing an object to a function as parameter and that object has "a: 1" and "b: 2" properties, it is possible in the function declaration has "({a})" as argument, so the function will receive only "a".
+ In order to destructure a nested object, one needs to specify it in the function declaration, opening the object up to the desiraded one. For instance the passed object is
+ {
+   a: {number: 1},
+   b: 2
+ }
+  the function declaration has to have "function x({a: {number}}")
+
+Q3. What is object literal enhancement?
+ It does the opposite of destructuring.
+ It is possible to join different variables into one place by defining an object binder which receives those different variables to be the object's properties.
+ Also, using back quote (`) is possible to do the joining by `{binder-name}`.
+
+Q4. What can you use the spread operator for?
+ Some of its use:
+ - to get an array's content, exemplo: newArray = [...oldArray, newItem]
+ - same above to objects
+ - REST parameters, which enables to receive a dynamic number of parameters setting them in an array. The function's definition has to be as parameter something like "(...params)".
+
+BONUS 1: Why can you omit "return" in arrow functions?
+ When there is only one line inside an arrow function, the curly braces can be omitted. In this case, that line will be returned, so the "return" word is omitted.
+
+BONUS 2: How regular function declarations and arrow functions treat the scope (this) differently?
+ In a Function declaration "this" recalls for the global object, whereas in an arrow function it is related to the its local scope.

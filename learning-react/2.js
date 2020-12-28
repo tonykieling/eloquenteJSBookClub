@@ -96,26 +96,31 @@
  */
 
  // // # Objects
-// const myObject = {
-//   a: "a",
-//   b: 2,
-//   c: ["first", 2],
-//   d: {
-//       fa: "this is the first argument",
-//       sa: 2
-//     }
-// };
-// const { a } = myObject;
-// console.log(`a is equalt to ${a}`);
+const myObject = {
+  a: "abc",
+  b: 2,
+  c: ["first", 2],
+  d: {
+      fa: "this is the first argument",
+      sa: 2
+    }
+};
+// const { b } = myObject;
+// console.log(`b is equalt to ${b}`);
+// function x({a}){
+//   return("inside function X, which parameter is {a}: ", a);
+// }
+// const x = ({a}) => ("inside function X, which parameter is {a}: ", a); // same as above
+// console.log(x(myObject));
 // // const { d: { fa } } = myObject;
 // const fa = myObject.d.fa; // does the same as the line above
 // console.log("-fa", fa);
 
 // // when a function argument is an object, it works like so
-// const f = ({d: { fa }}) => {
-//   console.log("FA: ", fa);
-// }
-// f(myObject);
+const f = ({d: { fa }}) => {
+  console.log("FA: ", fa);
+}
+f(myObject);
 
 
 // // # Arrays
@@ -220,11 +225,11 @@
 //   }), ms);
 // }
 
-// short version of the above
-const wait = ms => setTimeout(() => setTimeout(() => console.log("inside timeout after: ", ms), ms));
+// // short version of the above
+// const wait = ms => setTimeout(() => setTimeout(() => console.log("inside timeout after: ", ms), ms));
 
-// this is the caller function of the wait method
-[10, 15, 30, 35].forEach(e =>  wait(e * 200));
+// // this is the caller function of the wait method
+// [10, 15, 30, 35].forEach(e =>  wait(e * 200));
   
 // asyncForEach([1, 2, 3, 4], v => setTimeout(() => {
 //   console.log("v::", v);

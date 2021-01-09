@@ -16,23 +16,45 @@
 // p();
 
 
-
 // Im trying to use the received promise (by using await) as a value and then print it, but not success
 const p = async(time = 2000) => {
-  setTimeout(() => (`after ${time / 1000}s`), time);
+  setTimeout(() => new Promise(`after ${time / 1000}s`), time);
 }
 
-// const print = input => console.log(input);
+const print = input => console.log(input);
 
-// (async function mainF() {
-//   const text = await p(1500);
-//   print(text);
+(async function mainF() {
+  // const text = await p(1500);
+  // const asd = await "asd";
+  // await print(text + "asd");
 
-// // console.log(await p());
-//   // print(await p());
-// })();
+// console.log(await p());
+  try {
+    // const text = await p(1500);
+    console.log("text:", await Promise.all([p(1500)]));
+  } catch(error) {
+    console.log("error:::", error);
+  }
+  // print(await p());
+})();
 
 
-// the line 11 is not true in the code below when trying to execute line 21
-p()
-  .then(i => console.log(i));
+// // the line 11 is not true in the code below when trying to execute line 21
+// p()
+//   .then(i => console.log(i));
+
+
+// // from the book
+// const getFakePerson = async () => {
+//   try {
+//     const fetch = require("node-fetch");
+//     let res = await fetch("https://api.randomuser.me/?nat=US&results=1");
+//     let { results } = await res.json(); // the book does not consider await in this line which is not rigth
+//     console.log("results:", results);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+
+// getFakePerson();
+

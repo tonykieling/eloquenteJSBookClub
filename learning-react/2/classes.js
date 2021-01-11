@@ -18,19 +18,33 @@
 
 // ES2015 brings a 'syntac sugar' for classes declarations on JS
 class Test {
+  #pv = "private field";
   constructor(x, y) {
     this.x = x;
-    this.y = y
+    this.y = y;
+    this._test = "this is a private binder OLD SCHOOL";
+    this.#pv = "PV field";
   }
-  print(n) {
-    console.log(`x = ${this.x}\ny = ${this.y} - reveided parameter is: ${n}`);
+  print(n = 0) {
+    console.log(`x = ${this.x}\ny = ${this.y} - received parameter is: ${n} - _test = ${this._test} - private = ${this.#pv}`);
+  }
+
+  newValue(x, y, tpv) {
+    this.x = x;
+    this.y = y;
+    this._test = tpv;
   }
 }
 
 const xy = new Test(1, 2);
 console.log(xy);
+console.log(xy.x, xy._test); // this is okay
+// console.log(xy.#pv); // error
 xy.print(3);
+xy.newValue(10, 20, 30);
+xy.print();
 
+/*
 // extending a class - inheritance
 class ExtendedTest extends Test {
   constructor(x, y, extra) {
@@ -45,3 +59,4 @@ class ExtendedTest extends Test {
 
 const extraTest = new ExtendedTest(10, 20, 88.88);
 extraTest.print();
+*/

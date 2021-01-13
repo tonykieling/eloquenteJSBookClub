@@ -16,8 +16,8 @@ ES6 Modules in Node:
 
 // importing a default value will take that in any name's receiver
 // and the others export will be available, as well, calling by its own names
-import x from "./es6-modules-aux.mjs";
-console.log("dfVar", x);
+import xyz from "./es6-modules-aux.mjs";
+console.log("xyz", xyz);
 
 // import { myFunction as mf } from "./es6-modules-aux.mjs";
 

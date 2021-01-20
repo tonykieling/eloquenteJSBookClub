@@ -60,22 +60,22 @@ primitive types are immutable whereas non-primitives are mutable.
 
 
 // ********************************
-// https://css-tricks.com/understanding-immutability-in-javascript/
-// when a new object is assigned to another one, it is made by reference
-// this means that any changes, still in as object format, it will reflect in the other one (both directions)
-let obj1 = {a: 1, b:2};
-let obj2 = obj1;
-console.log("obj1", obj1, "obj2", obj2);
-obj2.b = "b";
-obj1.c = 3;
-// obj1 = "no more an object";
-// obj2 = "no more an object";
-console.log("obj1", obj1, "obj2", obj2);
-// In React, for instance, the reconciliation process (https://css-tricks.com/how-react-reconciliation-works/) will check the changes before it takes place.
-// As far as I understood, 
-// 1- it will receive an element, its previous state and the current one.
-// 2- check both states to make sure whether it needs to update the state
-// 3- if so, it does that
+// // https://css-tricks.com/understanding-immutability-in-javascript/
+// // when a new object is assigned to another one, it is made by reference
+// // this means that any changes, still in as object format, it will reflect in the other one (both directions)
+// let obj1 = {a: 1, b:2};
+// let obj2 = obj1;
+// console.log("obj1", obj1, "obj2", obj2);
+// obj2.b = "b";
+// obj1.c = 3;
+// // obj1 = "no more an object";
+// // obj2 = "no more an object";
+// console.log("obj1", obj1, "obj2", obj2);
+// // In React, for instance, the reconciliation process (https://css-tricks.com/how-react-reconciliation-works/) will check the changes before it takes place.
+// // As far as I understood, 
+// // 1- it will receive an element, its previous state and the current one.
+// // 2- check both states to make sure whether it needs to update the state
+// // 3- if so, it does that
 
 
 /**
@@ -110,3 +110,34 @@ console.log("obj1", obj1, "obj2", obj2);
 
 */
 
+
+// // how to prevent changing the original object passed as argument
+// const originalObject = { text: "hi there"};
+// const changingObject = object => {
+//   // not pure function, it changes the original object
+//   // return object.name = "Bob"; 
+
+//   // pure function, it DOES NOT change the original object
+//   const tempObject = Object.assign({}, object);
+//   tempObject["name"] = "Bob";
+//   return tempObject;
+// };
+// const newObject = changingObject(originalObject);
+// console.log("newObject:", newObject);
+// console.log("originalObject:", originalObject);
+
+// same above to array instead of object
+// how to prevent changing the original object passed as argument
+const originalArray = [1, 2, 3];
+const changingArray = object => {
+  // not pure function, it changes the original object
+  // return object.name = "Bob"; 
+
+  // pure function, it DOES NOT change the original object
+  const tempArray = Object.assign([], object);
+  tempArray.push("more stuff");
+  return tempArray;
+};
+const newArray = changingArray(originalArray);
+console.log("newArray:", newArray);
+console.log("originalArray:", originalArray);

@@ -131,7 +131,8 @@ primitive types are immutable whereas non-primitives are mutable.
 const originalArray = [1, 2, 3];
 const changingArray = object => {
   // not pure function, it changes the original object
-  // return object.name = "Bob"; 
+  // object.push("more stuff");
+  // return object;
 
   // pure function, it DOES NOT change the original object
   const tempArray = Object.assign([], object);

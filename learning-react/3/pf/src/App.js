@@ -12,38 +12,49 @@ const storeStateInLocalStorage = (key, value) => {
 
 
 const Counter = () => {
-  // const [count, setCount] = useLocalStorage(0, 'count');
-  // const [count, setCount] = useLocalStorage();
   const key = "count";
   const getValue = () => Number(getStateFromLocalStorage(key));
 
   const [count, setCount] = useState(getValue());
+
+  // or this way to do the same as above
+  // const [count, setCount] = useState(0);
+  // useEffect(() => {
+  //   console.log("ONLY ONCE!!!!!!!!!!!!!!");
+  //   setCount(getValue());
+  // }, []);
+
+
   const [message, setMessage] = useState("-");
 
   
   const increment = () => {
-    const newValue = Number(getValue()) + 1;
+    const newValue = getValue() + 1;
     setCount(newValue);
     storeStateInLocalStorage(key, newValue);
     setMessage("Higher");
   };
   
+
   const decrement = () => {
-    const newValue = Number(getValue()) - 1;
+    const newValue = getValue() - 1;
     setCount(newValue);
     storeStateInLocalStorage(key, newValue)
     setMessage("Lower");
   }
   
+
   const reset = () => {
     setCount(0);
     setMessage("-");
   }
   
+
   useEffect(() => {
     document.title = `Counter: ${count} ${message === "Higher" ? " + Inc" : (message === "Lower" ? " - Dec" : "")}`;
-  }, [count]);
+  }, [count, message]);
   
+
   return (
     <div className="Counter">
       <p>{message}</p>

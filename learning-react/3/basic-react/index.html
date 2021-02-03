@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>React Samples</title>
+  </head>
+  <body>
+    <!-- Target container -->
+    <div id="root"></div>
+
+    <!-- React library & ReactDOM (Development Version)-->
+    <script src="https://unpkg.com/react@16/umd/react.development.js">
+    </script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
+    </script>
+
+    <!-- https://www.geeksforgeeks.org/how-react-and-reactdom-works/ -->
+
+
+    <!-- FIRST WAY TO DO THE UI - Vanilla Javascript -->
+    <!-- <script>
+      const root = document.querySelector( 'body' ); 
+
+      function createListElement() { 
+        const libsAndFrameworksNames = ['React.js', 'Angular', 'Vue.js', 
+        'Node.js', 'Underscore.js']; 
+        
+        const ul = document.createElement( 'ul' ); 
+        ul.classList.add( "list-lib-frameworks" ); 
+
+        libsAndFrameworksNames.forEach( function appoendToUnorderedList( name ) { 
+          const listElement = document.createElement( 'li' ); 
+          listElement.innerText = name; 
+          ul.appendChild( listElement ); 
+        } ); 
+
+        return ul; 
+      } 
+
+      function createWebPageWithJavaScript( root ) { 
+        // PARENT ELEMENT 
+        const parent = document.createElement( 'section' ); 
+        parent.classList.add( 'js-section' ); 
+        
+        // HEADING ELEMENT 
+        const heading = document.createElement( 'h1' ); 
+        heading.innerText = 'JavaScript Libraries and Frameworks'; 
+
+        // UNORDERED LIST ELEMENT 
+        const unorderedListElement = createListElement(); 
+
+        // APPEND HEADDING AND UNORDERED LIST ELEMET TO PARENT 
+        parent.appendChild(heading) 
+        parent.appendChild( unorderedListElement ); 
+
+        // APPEND PARENT TO ROOT ELEMENT 
+        root.appendChild( parent ); 
+      } 
+
+      createWebPageWithJavaScript( root );
+    </script> -->
+
+
+    <!-- SECOND WAY TO DO THE UI - React in the HTML file -->
+    <!-- <script>
+      // Pure React and JavaScript code
+      const listOfLibAndFrameworks = ['React.js', 'Angular', 'Vue.js', 'Node.js', 'underscore.js'];
+        
+      const mainReactElement = React.createElement( 
+          "section", 
+          { className: "js-section" }, 
+          React.createElement( "h1", null, "JavaScript Libraries and Frameworks" ), 
+          React.createElement(
+              "ul",
+              { className: 'list-lib-frameworks' },
+              listOfLibAndFrameworks.map((element, index) => React.createElement('li',
+              { key: index }, element))
+          )
+      ); 
+        
+      console.log( "what is the react element 'mainReactElement':", mainReactElement ); 
+        
+      ReactDOM.render(mainReactElement, document.querySelector( '#root' ));
+
+    </script> -->
+
+    <!-- THIRD WAY TO DO THE UI - React in an external .js file -->
+    <script src="myscript.js"></script>
+    
+  </body>
+</html>
+
+
+<!-- ? How does React code is insert into the html file in a create-react-app? -->
+<!-- ? AJAX ? -->

@@ -1,0 +1,2 @@
+How to use the API
+Just do a GET request on loripsum.net/api, to get some placeholder text. You can add extra parameters to specify the output you're going to get. Say, you need 10 short paragraphs with headings, use loripsum.net/api/10/short/headers.

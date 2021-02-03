@@ -17,7 +17,13 @@
     <!-- https://www.geeksforgeeks.org/how-react-and-reactdom-works/ -->
 
 
+    <!-- Below, some possible ways to handle the UI -->
+
+
+
+    <!-- ########## 1/4 -->
     <!-- FIRST WAY TO DO THE UI - Vanilla Javascript -->
+    <!-- Do not need lines 12-15 -->
     <!-- <script>
       const root = document.querySelector( 'body' ); 
 
@@ -61,9 +67,12 @@
     </script> -->
 
 
+
+    <!-- ########## 2/4 -->
     <!-- SECOND WAY TO DO THE UI - React in the HTML file -->
     <!-- <script>
       // Pure React and JavaScript code
+      // NO JSX!!
       const listOfLibAndFrameworks = ['React.js', 'Angular', 'Vue.js', 'Node.js', 'underscore.js'];
         
       const mainReactElement = React.createElement( 
@@ -84,9 +93,20 @@
 
     </script> -->
 
+
+
+    <!-- ########## 3/4 -->
     <!-- THIRD WAY TO DO THE UI - React in an external .js file -->
-    <script src="myscript.js"></script>
+    <!-- the file's content is the same as the script above -->
+    <!-- <script src = "myscript.js">
+    </script> -->
     
+
+
+    <!-- ########## 4/4 -->
+    <!-- Practicing AJAX -->
+    <script src = "./doing-ajax.js">
+    </script>
   </body>
 </html>
 

@@ -1,0 +1,41 @@
+<!-- THIS program runs JSX and Babel
+When using JSX, Babel is mandatory due to the browser do NOT undertand JSX code, only pure Javascript.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 5th - exercise</title>
+
+  <!-- React library & ReactDOM (Development Version)-->
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+  <!-- it allows writing JSX code -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+  <div id = "pureJS">
+  </div>
+  <div id = "jsx">
+  </div>
+</body>
+
+<script type="text/babel"> // type MUST to be as "text/babel" in order to execute babel in the code below
+  // JSX code here. Or link to separate JavaScript file that contains JSX.
+  const JSXTitle = 
+    <>
+      <h1 style = {{color: "blue"}}> 
+        Title: It is a <span style = {{color: "green"}}>React Fragment</span> test.
+      </h1>
+      <p>It is suppose to be a text inside a React Fragment together the above title - both inside the same React Fragment.</p>
+      <p>Thank you. :)</p>
+    </>
+
+  ReactDOM.render(JSXTitle, document.querySelector("#jsx"));
+</script>
+
+</html>

@@ -19,7 +19,9 @@
 </body>
 
 <!-- <script type="text/babel" src="./my-script.js">  ///// it should be used in case of run the script from another file-->
-<script type="text/babel">
+<script>
+// <script src="./data.js">
+// console.log("data", data)
 
   const data = [
     {
@@ -57,6 +59,10 @@
       ]
     }
   ];
+</script>
+
+<script type="text/babel">
+// console.log("data====", data)
 
   function Recipe({ name, ingredients, steps }) {
     return (

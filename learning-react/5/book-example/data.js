@@ -1,4 +1,4 @@
-module.exports =  data = [
+const data = [
   {
     name: "Baked Salmon",
     ingredients: [

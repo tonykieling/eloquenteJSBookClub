@@ -1,37 +1,42 @@
-<!-- THIS program runs JSX and Babel
-When using JSX, Babel is mandatory due to the browser do NOT undertand JSX code, only pure Javascript.
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chapter 5th - exercise</title>
+  <title>Chapter 5th - part I exercise</title>
 
-  <!-- React library & ReactDOM (Development Version)-->
-  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-
-  <!-- it allows writing JSX code -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- React library & ReactDOM (Development Version)-->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  
+    <!-- it allows writing JSX code -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
 </head>
 <body>
-  <div id = "pureJS">
-  </div>
-  <div id = "jsx">
-  </div>
+  <div id = "root"></div>
 </body>
 
-<script type="text/babel"> // type MUST to be as "text/babel" in order to execute babel in the code below
-  // JSX code here. Or link to separate JavaScript file that contains JSX.
-  const JSXTitle = <h1 style = {{color: "blue"}}> It is a JSX Title <span style = {{color: "grey"}}>{ (false) ? "OK" : "NOK"}</span> </h1>
-  ReactDOM.render(JSXTitle, document.querySelector("#jsx"));
+<!-- // it seems that src="file.js" does NOT do anything other than call and execute the given script -->
+<script src = "./data.js"> 
+// <script type="module" src = "./index.js"> 
+  console.log("hello world"); // it does NOT do anything
 </script>
 
-<script>
-  const myReactElement = React.createElement("h1", {style: {color: "red"}}, "It is the Title");
-  ReactDOM.render(myReactElement, document.querySelector("#pureJS"));
+<script type = "text/babel" src = "./Item.js"></script>
+<!-- <script type = "module" src = "./Item.js"></script> -->
+
+<script type = "text/babel" src = "./Menu.js"></script>
+
+<script type = "text/babel">
+/**
+ * It needs to run over a server in order to run from different files and avoid CORS issues.
+ */
+ 
+  ReactDOM.render(
+    <Menu items = {data} title = "Test title" />,
+    document.querySelector("#root")
+  );
+
 </script>
 </html>

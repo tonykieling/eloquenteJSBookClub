@@ -1,13 +1,11 @@
-import {data} from "./data.js";
-import Menu from "./Menu.js";
-// import {Item} from "./Item.js";
+// console.log("React", React);
+// console.log("inside index.js and data is equal to:", data);
+// console.log("Menu", Menu);
+// console.log("Item", Item);
 
-console.log("inside index.js and data is equal to:", data);
-
-const doe = React.createElement("h1", {style:{color:"green"}}, "TEST X!");
+console.log("444 - inside index.js");
 
 ReactDOM.render(
-  // <MainComponent items = {data} title = "Test title" />,
-  doe,
+  <Menu items = { data } title = "# People info #" />,
   document.querySelector("#root")
 );

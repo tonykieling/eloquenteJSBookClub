@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 5th - part I exercise</title>
+
+
+  <!-- IT SEEMS THE LIBRARIES CALLING MAY BE HERE OR AT THE BODY TAG -->
+  <!-- React library & ReactDOM (Development Version)-->
+  <script src = "https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src = "https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+  <!-- it allows writing JSX code -->
+  <script src = "https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+</head>
+<body>
+  <div id = "root"></div>
+</body>
+
+  <!-- React library & ReactDOM (Development Version)-->
+  <!-- <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script> -->
+
+  <!-- it allows writing JSX code -->
+  <!-- <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> -->
+
+
+<script src = "./data.js" async></script>
+
+<script type = "module" src = "./imports.js"></script>
+
+<!-- this script loads Item.js, which is a component and JSX code enabled by 'text/babel' -->
+<script type = "text/babel" src = "./Item.js"></script>
+
+<!-- this script loads Menu.js, which is a component and JSX code enabled by 'text/babel' -->
+<script type = "text/babel" src = "./Menu.js"></script>
+
+<!-- this script loads index.js, which is a component and JSX code enabled by 'text/babel' -->
+<!-- <script src = "./index.js" type="text/babel"></script> -->
+<script type = "text/babel" src = "./index.js"></script>
+
+</html>

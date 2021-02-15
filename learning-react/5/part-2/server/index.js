@@ -6,10 +6,10 @@ const path = require("path");
 app.use(express.static("public"));
 
 // it deliveres front-end files to the client/browser
-app.get('*', (req, res) => {
-  console.log("receiving request");
-  return res.sendFile(path.join(__dirname, "./public", "index.html"));
-});
+// app.get("*", (req, res) => {
+//   console.log("receiving request");
+//   return res.sendFile(path.join(__dirname, "./public", "index.html"));
+// });
 
 // app.get("*", (req, res) => {
 //   console.log("data is coming");

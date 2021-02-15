@@ -15,13 +15,11 @@ var path = require("path");
 //   // devtool: "#source-map"
 // };
 
+
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./index.js",
   output: {
-    path: path.join(__dirname, "dist"),
+    path: path.join(__dirname, "dist", "assets"),
     filename: "bundle.js"
-  },
-  module: {
-    rules: [{ test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }]
   }
 };

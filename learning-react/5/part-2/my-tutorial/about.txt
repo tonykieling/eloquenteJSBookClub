@@ -1,0 +1,19 @@
+this app worked!!
+
+I used the app example from the book and the settings from 
+https://www.freecodecamp.org/news/how-to-set-up-deploy-your-react-app-from-scratch-using-webpack-and-babel-a669891033d4/
+
+I followed the tutorial up to "Adding Prettier" (not including it)
+
+*** there is an adjustment in package.json:
+- instead of:
+"scripts": {
+ "start": "webpack-dev-server --mode development",
+},
+- do:
+"scripts": {
+ "start": "webpack serve --mode development",
+},
+
+
+All steps in ./steps.txt

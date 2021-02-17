@@ -62,7 +62,7 @@ in the server, index.html will point for that location (./dist, file bundle.js, 
 8- if running using webpack server:
 - add a line in package.json, scripts:
   "start": "webpack serve --mode development",
-- npm run start
+- # npm run start
 
 OR
 8- copy index and /dist to a public directory in a node server (for instance) 
@@ -70,5 +70,6 @@ OR
 *** for that, add a line in package.json:
   "build": "webpack --mode production",
 run # npm run build
-copy the files to the server
+copy the files to the server public directory
+
 

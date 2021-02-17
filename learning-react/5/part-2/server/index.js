@@ -1,8 +1,9 @@
 const PORT = 7890;
 const express = require("express");
 const app = express();
-const path = require("path");
+// const path = require("path");
 
+// it uses a midleware to delivery files from a directory passed as parameter
 app.use(express.static("public"));
 
 // it deliveres front-end files to the client/browser
@@ -16,4 +17,4 @@ app.use(express.static("public"));
 //   return res.send("OK");
 // });
 
-app.listen(PORT, () => console.log(`listening at port ${PORT}\n`));
+app.listen(PORT, () => console.log(`\n### Server listening at http://localhost/${PORT}`));

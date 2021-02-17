@@ -15,8 +15,6 @@ c- Set up a webpack build that incorporates Babel.
 3- install react and react-dom
 # npm i react react-dom
 
-4- write React components and the app
-
 5- install webpack
 *** it is gonna work in dev env
 it is needed for bundle, minify and act as a server
@@ -54,6 +52,10 @@ it is needed for transpiling ES6 syntax
     "@babel/preset-react"
   ]
 }
+
+4- write React components and the app
+
+create a public directory and insert into an index.html file
 
 7- set the index.html file to load the bundler
 I.e. <script src="./dist/bundle.js"></script>

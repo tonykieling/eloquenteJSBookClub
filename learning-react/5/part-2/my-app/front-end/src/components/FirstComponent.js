@@ -1,7 +1,7 @@
 import React from "react";
 
 const FirstComponent = () => {
-  console.log("inside FirstComponent");
+  console.log("inside FirstComponent!");
   return(
     <h1>It's JSX code!</h1>
   );

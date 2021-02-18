@@ -17,4 +17,4 @@ app.use(express.static("public"));
 //   return res.send("OK");
 // });
 
-app.listen(PORT, () => console.log(`\n### Server listening at http://localhost/${PORT}`));
+app.listen(PORT, () => console.log(`\n### Server listening at http://localhost:${PORT}`));

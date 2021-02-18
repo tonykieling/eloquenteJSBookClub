@@ -1,4 +1,4 @@
-***** Step-by-step
+***** Step-by-step for a React project without using create-react-app
 
 # PHASE 1 - FRONT-END
 The first phase considers only front-end development
@@ -10,8 +10,9 @@ The first phase considers only front-end development
 # mkdir src
 # mkdir src/components
 # mkdir public
+*** public will hold the files to be served and src has the React source code
 
-2- create npm project - in the root dir
+2- create npm project - in the root dir (my-app)
 # npm init -y
   it is gonna create a package.json and package-lock.json files, which contains the project's configuration.
 
@@ -20,11 +21,11 @@ The first phase considers only front-end development
 
 4- install webpack
 *** it is gonna work in dev env
-it is needed for bundle, minify and act as a server
- when building the bundler, it needs to be set in a prod server
+*** it is needed for bundle, minify and act as a server
+*** when building the bundler, it needs to be set in a prod server
 # npm install --save-dev webpack webpack-dev-server webpack-cli
 
-4.1- create a file webpack.config.js (in the root level):
+4.1- create a file "webpack.config.js" (in the root level):
 module.exports = {
   entry: "./src/index.js",
   output: {
@@ -61,34 +62,29 @@ it is needed for transpiling ES6 syntax
 
 8- set the index.html file to load the bundler
 I.e. <script src="./dist/bundle.js"></script>
-in the server, index.html will point for that location (./public, file bundle.js, shich is exported by webpack in the build stage)
+*** in the server, index.html will point for that location (./public, file bundle.js, which is exported by webpack in the build stage)
 
 9- in order to check if the code is working and test the settings
 - add 2 lines in package.json, scripts:
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
 - run the 2 commands:
-- # npm run build => it will create the bundle file
+- # npm run build => it will create the bundle file in public (the output from "webpack.config.js")
 - # npm run start => it will start the server
 - check in the browser
 *** I am not sure if it is necessary proceed with all the steps
-*** as aboce, each time change the code, it needs to generate a new bundle file manually, at least the server is Hot Module Replacement
+*** as above, each time the code is changed, it needs to generate a new bundle file manually, at least the server is Hot Module Replacement and do not need to be restarted.
 
 Summarizing:
 1- install and set webpack and babel
-2- set index.html to load the bundle file
+2- write React code
+3- generate the bundle file
+3- set index.html to load the bundle file
 3- run webpack server
 
 # PHASE 2 - BACKEND AND INTEGRATION
-
-
-
-OR
-8- copy index and /dist to a public directory in a node server (for instance) 
-*** in part-2/server there is a node server up and running
-*** for that, add a line in package.json:
-  "build": "webpack --mode production",
-run # npm run build
-copy the files to the server public directory
-
-
+*** In order to deploy the project to a webserver
+*** The same as before, but step 9 can be changed to:
+9- set a node server (/server)
+10- # npm run build => it will generate the files to be served
+11- copy front-end/public to server/public

@@ -1,12 +1,17 @@
 import React from "react";
-import { FaStar } from "react-icons/fa";
+import StarRating from "./components/StarRating.js"
 
-export default function StarRating() {
-  return [
-    <FaStar color="red" />,
-    <FaStar color="red" />,
-    <FaStar color="red" />,
-    <FaStar color="grey" />,
-    <FaStar color="grey" />
-  ];
-}
+const Anything = () => {
+  return (
+    // <StarRating totalStars = { 8 } />
+    // <StarRating />
+    // <StarRating style = {{ backgroundColor: "yellow" }}/>
+    <StarRating 
+      style = {{ backgroundColor: "yellow" }}
+      dc = { e => alert("double click") }
+      message = "messageeee"
+    />
+  );
+};
+
+export default Anything;

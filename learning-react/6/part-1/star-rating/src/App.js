@@ -8,8 +8,8 @@ const Anything = () => {
     // <StarRating style = {{ backgroundColor: "yellow" }}/>
     <StarRating 
       style = {{ backgroundColor: "yellow" }}
-      dc = { e => alert("double click") }
-      message = "messageeee"
+      message = "messageeee test"
+      onDoubleClick = { e => alert("double click") }
     />
   );
 };

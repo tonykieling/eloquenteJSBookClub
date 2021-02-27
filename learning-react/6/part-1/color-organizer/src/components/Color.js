@@ -12,6 +12,7 @@ export default function Color({ title, color, rating, id, onRemove, onRate }) {
       </button>
       <div style={{ height: 50, backgroundColor: color }} />
       <StarRating selectedStars = { rating } onRate = { rate => onRate(id, rate) } />
+      {/* <StarRating selectedStars = { rating } onRate = { rate => onRate(id, rate) } totalStars = { 10 } /> */}
       {/* <StarRating selectedStars={rating} onDoubleClick={e => alert("double click")} /> */}
     </section>
   );

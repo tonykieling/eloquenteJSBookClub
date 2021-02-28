@@ -7,7 +7,6 @@ export const useInput = initialstate => {
    *  2- the method which changes that particular element
    */
   const [ value, setValue ] = useState(initialstate);
-// console.log("initialstate:", initialstate, "value::", value)
   return [
     { 
       value,

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 
 /**
- * IT is an CONTROLLED COMPONENT 
+ * IT is a CONTROLLED COMPONENT 
  * because it is controlled by React instead of DOM
  */
 
@@ -18,8 +18,8 @@ export default function AddColorFormUC({ onNewColor = f => f }) {
       console.log("color", color);
       // onNewColor(title, color);  // this is a method received from the component parent used to pass data to it
       alert(`color "${ title } - ${ color }\nwas added`);
-      setTitle("");
-      setColor("#888888");
+      // setTitle("");
+      // setColor("#888888");
     }
   }
 
@@ -37,10 +37,10 @@ export default function AddColorFormUC({ onNewColor = f => f }) {
       />
 
       <input 
-        type      = "color" 
+        type      = "color" required 
+
         value     = { color }
         onChange  = { event => setColor(event.target.value)}
-        required 
       />
 
       <button>ADD</button>

@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import { useInput } from "./custom-hooks/my-hooks.js";
 
 /**
@@ -14,11 +13,11 @@ export default function AddColorFormUC({ onNewColor = f => f }) {
   const submit = e => {
     e.preventDefault();
     if (colorPros.value !== "#ffffff") {
-      console.log(" - title", titlePros);
-      console.log(" - color", colorPros);
-      console.log("### color ", titlePros, colorPros, "was added");
+      // console.log(" - title", titlePros);
+      // console.log(" - color", colorPros);
+      // console.log("### color ", titlePros, colorPros, "was added");
 
-      // onNewColor(titlePros.value, colorPros.value);  // this is a method received from the component parent used to pass data to it
+      onNewColor(titlePros.value, colorPros.value);  // this is a method received from the component parent used to pass back data to it
       resetTitle();
       resetColor();
     }
@@ -42,9 +41,7 @@ export default function AddColorFormUC({ onNewColor = f => f }) {
 
       <input 
         { ...colorPros }
-        type      = "color" 
-        // value     = { color }
-        // onChange  = { event => setColor(event.target.value)}
+        type      = "color"
         required 
       />
 

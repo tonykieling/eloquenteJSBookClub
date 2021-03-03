@@ -10,6 +10,8 @@ export const useColors = () => useContext(ColorContext);
 // export default function ColorProvider ({ children }) {
 export const ColorProvider = ({ children }) => {
 
+// console.log("children=>", children);
+
   const [colors, setColors] = useState(colorData);
   
   const addColor = (title, color) => setColors([ ...colors, { id: v4(), rating: 0, title, color }]);

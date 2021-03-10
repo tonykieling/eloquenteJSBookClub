@@ -16,6 +16,7 @@ export default function SideEffects1() {
     return ( () => {
       console.log("#@ inside cleanup");
     });
+    // eslint-disable-next-line
   }, []);
 
   // useEffect(() => {

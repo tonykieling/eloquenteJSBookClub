@@ -17,6 +17,7 @@ function useFetch(url) {
     } else {
       fetchUrl();
     }
+    // eslint-disable-next-line
   }, [loading]);
 
   return [data, loading, setLoading];

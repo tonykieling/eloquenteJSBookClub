@@ -67,12 +67,12 @@
 import { useReducer, useState } from "react";
 
 export default function Comp1() {
-  const [number, setNumber] = useReducer((newNumber, currentNumber) => Number(newNumber) + Number(currentNumber), 0);
+  const [number, setNumber] = useReducer((newNumber, currentNumber) =>Number(newNumber) + Number(currentNumber), 0);
 
   const [toAdd, setToAdd] = useState(0);
 
   return (
-    <>
+    <div className = "box">
       <span>How much to add? </span>
       <input
         type = "number"
@@ -85,6 +85,6 @@ export default function Comp1() {
         Add
       </button>
         { ` ${number}` }
-    </>
+    </div>
   );
 }

@@ -1,20 +1,20 @@
 import faker from "faker";
 
 const Item = ({data = [], renderItem}) => {
-  console.log("data:::", data);
+  // console.log("data:::", data);
   return (data.length === 0)
     ? <h1 style = {{textAlign: "center", color: "green"}}>Empty data</h1>
     :
-      <ul>
+      <ol>
         {data.map((item ,i) => 
           <li key = { i }>
             {renderItem(item)}
           </li>
         )}
-      </ul>
+      </ol>
 }
 
-const bigList = [...Array(3)].map((e, i) => ({
+const bigList = [...Array(30)].map((e, i) => ({
   id: i,
   name: faker.name.findName(),
   email: faker.internet.email(),
@@ -23,7 +23,7 @@ const bigList = [...Array(3)].map((e, i) => ({
 }));
 
 const renderItem = e => {
-  console.log("e:", e);
+  // console.log("e:", e);
   return (
     <div style = {{ display: "flex"}}>
         {/* <img src = {e.avatar} alt = { `${e.name} avatar`} width = "50px" /> */}
@@ -32,7 +32,7 @@ const renderItem = e => {
   );
 }
 
-export default function People() {
+export default function PeopleV1() {
   return (
     <Item data = { bigList } renderItem = { renderItem } />
   );

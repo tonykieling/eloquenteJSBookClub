@@ -29,7 +29,7 @@
 import { useState, memo } from "react";
 
 const Cat = ({ name }) => {
-  console.log("cat:", name);
+  // console.log("cat:", name);
   return <p>Cat's name is: { name }</p>
 }
 
